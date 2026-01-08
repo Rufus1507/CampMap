@@ -5,20 +5,53 @@ import io, base64
 import math 
 import numpy as np
 def create_page():
+
+
+
+
     # ===== GPS -> PIXEL TRANSFORM =====
     user_lat = None
     user_lon = None
     gps_status = ui.label("📡 Đang chờ GPS...").classes(
     'absolute bottom-4 right-4 z-20 '
     'bg-white px-4 py-2 rounded-full shadow text-sm')
-    def on_gps_update(e):   
+    def request_gps():
+        ui.run_javascript('''
+            if (!navigator.geolocation) {
+                emitEvent('gps-error', {message: 'Trình duyệt không hỗ trợ GPS'});
+            } else {
+                navigator.geolocation.getCurrentPosition(
+                    (pos) => {
+                        emitEvent('gps-update', {
+                            lat: pos.coords.latitude,
+                            lon: pos.coords.longitude
+                        });
+                    },
+                    (err) => {
+                        emitEvent('gps-error', {
+                            message: err.message
+                        });
+                    }
+                );
+            }
+        ''')
+    def on_gps_update(e):
         nonlocal user_lat, user_lon
         user_lat = e.args['lat']
         user_lon = e.args['lon']
 
         gps_status.text = f"📍 GPS: {user_lat:.6f}, {user_lon:.6f}"
         update_path()
+
     ui.on('gps-update', on_gps_update)
+
+    ui.on('gps-error', lambda e: (
+        gps_status.set_text(f"❌ GPS lỗi: {e.args['message']}")
+    ))
+    ui.button(
+    "📍 Lấy vị trí hiện tại",
+    on_click=request_gps
+).classes('bg-blue-600 text-white px-4 py-2 rounded')
 
     def build_gps_to_pixel(gps_points, pixel_points):
         """
@@ -319,15 +352,12 @@ def create_page():
                 return
 
             path, dist = find_shortest_path(start, end)
-            image_view.source = draw_path(path)
+            image_view.source = draw_path(path, user_pixel)
+
 
             if not path:
                 distance_label.text = "🚫 Không tìm thấy đường đi!"
                 distance_label.classes(remove='bg-blue-600/90', add='text-white bg-red-600/90')
-        user_lat = 13.804580
-        user_lon = 109.219488
-
-        user_pixel = gps_to_pixel(user_lat, user_lon)
 
         # Binding sự kiện
         # start_sel.on_value_change(update_path)
