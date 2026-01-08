@@ -3,7 +3,54 @@ import networkx as nx
 from PIL import Image, ImageDraw
 import io, base64
 import math 
+import numpy as np
 def create_page():
+    # ===== GPS -> PIXEL TRANSFORM =====
+    user_lat = None
+    user_lon = None
+    gps_status = ui.label("📡 Đang chờ GPS...").classes(
+    'absolute bottom-4 right-4 z-20 '
+    'bg-white px-4 py-2 rounded-full shadow text-sm')
+    def on_gps_update(e):   
+        nonlocal user_lat, user_lon
+        user_lat = e.args['lat']
+        user_lon = e.args['lon']
+
+        gps_status.text = f"📍 GPS: {user_lat:.6f}, {user_lon:.6f}"
+        update_path()
+    ui.on('gps-update', on_gps_update)
+
+    def build_gps_to_pixel(gps_points, pixel_points):
+        """
+        gps_points: dict {name: (lat, lon)}
+        pixel_points: dict {name: (x, y)}
+        """
+        A = []
+        Bx = []
+        By = []
+
+        for k in gps_points:
+            lat, lon = gps_points[k]
+            x, y = pixel_points[k]
+            A.append([lat, lon, 1])
+            Bx.append(x)
+            By.append(y)
+
+        A = np.array(A)
+        Bx = np.array(Bx)
+        By = np.array(By)
+
+        coef_x = np.linalg.lstsq(A, Bx, rcond=None)[0]
+        coef_y = np.linalg.lstsq(A, By, rcond=None)[0]
+
+        def gps_to_pixel(lat, lon):
+            x = coef_x[0]*lat + coef_x[1]*lon + coef_x[2]
+            y = coef_y[0]*lat + coef_y[1]*lon + coef_y[2]
+            return int(x), int(y)
+
+        return gps_to_pixel
+
+
     # --- Style chung ---
     ui.query('body').style('background-color: #f0f4f8;') 
     with ui.column().classes('w-full items-center'):
@@ -33,6 +80,32 @@ def create_page():
             "20": (1120, 350), "21": (1065, 370), "22": (1240, 420), "23": (1300, 410),
         }
         locations = {**visible_locations, **virtual_nodes}
+        gps_to_pixel = build_gps_to_pixel(
+            gps_points={
+            "GATE": (13.804580,109.219488),
+            "ALPHA BUILDING": (13.803696, 109.219834),
+            "BETA BUILDING": (13.804047, 109.219097),
+            # "UNIVERSITY DORMITARY": (13.803590, 109.217654),
+            },
+            pixel_points={  
+                "GATE": locations["GATE"],
+                "ALPHA BUILDING": locations["ALPHA BUILDING"],
+                "BETA BUILDING": locations["BETA BUILDING"],
+            }
+        )
+        def snap_to_nearest_node(pixel):
+            min_dist = float('inf')
+            nearest = None
+            ux, uy = pixel
+
+            for name, (x, y) in locations.items():
+                d = (ux - x) ** 2 + (uy - y) ** 2
+                if d < min_dist:
+                    min_dist = d
+                    nearest = name
+
+            return nearest
+
         # --- Xây dựng Đồ thị ---
         G = nx.Graph()
         # chứa các điểm nối với nhau 
@@ -49,6 +122,7 @@ def create_page():
             ('14','19'), ('19','20'), ('20','HIGHSCHOOL DORMITARY'), ('SOCCER','21'), ('21','22'), ('22','23'),
             ('19','21'), ('23','UNIVERSITY DORMITARY'), ("HIGHSCHOOL DORMITARY", "UNIVERSITY DORMITARY")
         ]
+
         for a, b in edges:
             xa, ya = locations[a]
             xb, yb = locations[b]
@@ -89,7 +163,7 @@ def create_page():
                 pos += dash_len + gap_len
 
                 # --- Logic vẽ hình ---
-        def draw_path(path):
+        def draw_path(path,user_pixel=None):
             try:
                 img = Image.open(IMAGE_PATH).convert("RGB")
                 draw = ImageDraw.Draw(img)
@@ -124,12 +198,19 @@ def create_page():
                     # Vẽ điểm cuối (Lục/Cờ đích)
                     end = locations[path[-1]]
                     draw.ellipse((end[0]-12, end[1]-12, end[0]+12, end[1]+12), fill="#28a745", outline="white", width=2)
+                    if user_pixel:
+                        draw.ellipse(
+                            (user_pixel[0]-10, user_pixel[1]-10,
+                            user_pixel[0]+10, user_pixel[1]+10),
+                            fill="red")
                 buf = io.BytesIO()
+                
                 img.save(buf, format="PNG")
                 return f"data:image/png;base64,{base64.b64encode(buf.getvalue()).decode('utf-8')}"
             except FileNotFoundError:
                 ui.notify("Lỗi: Không tìm thấy file ảnh 'khuonvientruong.jpg'!", type='negative')
                 return ""
+            
         # --- UI Controller (Card điều khiển) ---
         # with ui.card().classes('w-full max-w-[1200px] p-6 mb-6 bg-white shadow-md rounded-lg'):
         #     with ui.row().classes("w-full justify-center gap-6 md:gap-12"):
@@ -145,11 +226,11 @@ def create_page():
         zoom_level = 1.0
         with ui.card().classes('w-full max-w-[1200px] p-6 mb-6 bg-white shadow-md rounded-lg'):
             with ui.row().classes("w-full justify-center gap-6 md:gap-12"):
-                start_sel = ui.select(
-                    options=list(visible_locations.keys()),
-                    value = "BETA BUILDING",
-                    label="📍 Điểm bắt đầu"
-                ).classes('w-full md:w-1/3 text-sm py-1')
+                # start_sel = ui.select(
+                #     options=list(visible_locations.keys()),
+                #     value = "BETA BUILDING",
+                #     label="📍 Điểm bắt đầu"
+                # ).classes('w-full md:w-1/3 text-sm py-1')
 
                 ui.icon('arrow_forward', size='3em').classes('text-gray-400 self-center hidden md:block')
 
@@ -187,8 +268,16 @@ def create_page():
                     ui.label("Điểm hiện tại").classes('text-gray-700 text-xs md:text-sm')
 
         # --- KHUNG HIỂN THỊ BẢN ĐỒ (Overlay) ---
-        with ui.element('div').classes('relative w-full max-w-[1200px]' \
-        ' h-[800px] border-4 border-white shadow-xl rounded-xl overflow-auto bg-gray-200'):
+        with ui.element('div').classes(
+            'relative w-full max-w-[1200px] '
+            'h-[800px] border-4 border-white shadow-xl rounded-xl overflow-auto bg-gray-200'
+        ):
+            # image_view = ui.image().classes(
+            #     'w-full h-auto object-contain'
+            # ).style(
+            #     'transform: scale(1.2); transform-origin: top left; transition: transform 0.2s ease;'
+            # )
+
                         # 3. CỤM NÚT ZOOM VÀ HIỂN THỊ TỶ LỆ
             with ui.column().classes('sticky bottom-4 left-4 z-20 gap-2'): 
                 with ui.button_group().classes('shadow-lg bg-white'):
@@ -212,30 +301,36 @@ def create_page():
             lbl_zoom.text = f"{int(zoom_level * 100)}%"
         # --- Hàm cập nhật đường đi (giữ nguyên logic cũ) ---
         def update_path():
-            start = start_sel.value
+            if user_lat is None or user_lon is None:
+                return
             end = end_sel.value
-            # if end == "BETA BUILDING":
-            #     btn_goto_beta.visible = True
-            # else:
-            #     btn_goto_beta.visible = False
-            # Xử lý trường hợp trùng điểm
+
+            # GPS → pixel
+            user_pixel = gps_to_pixel(user_lat, user_lon)
+
+            # Snap GPS → node gần nhất
+            start = snap_to_nearest_node(user_pixel)
+
+            if not start or not end:
+                return
+
             if start == end:
-                image_view.source = draw_path([start]) 
-                # distance_label.text = "Bạn đang ở tại vị trí màu đỏ"
-                # distance_label.classes(remove='text-white bg-blue-600', add='text-blue-800 bg-yellow-300/90')
-            else:
-                path, dist = find_shortest_path(start, end)
-                image_view.source = draw_path(path)
-                if path:
-                    distance_label.text = ""
-                    distance_label.classes(add='hidden')
-                    distance_label.classes(remove='text-blue-800 bg-yellow-300/90', add='text-white bg-blue-600/90')
-                else:
-                    distance_label.text = "🚫 Không tìm thấy đường đi!"
-                    distance_label.classes(remove='bg-blue-600/90', add='text-white bg-red-600/90')
+                image_view.source = draw_path([start])
+                return
+
+            path, dist = find_shortest_path(start, end)
+            image_view.source = draw_path(path)
+
+            if not path:
+                distance_label.text = "🚫 Không tìm thấy đường đi!"
+                distance_label.classes(remove='bg-blue-600/90', add='text-white bg-red-600/90')
+        user_lat = 13.804580
+        user_lon = 109.219488
+
+        user_pixel = gps_to_pixel(user_lat, user_lon)
 
         # Binding sự kiện
-        start_sel.on_value_change(update_path)
+        # start_sel.on_value_change(update_path)
         end_sel.on_value_change(update_path)
         
         # Chạy lần đầu

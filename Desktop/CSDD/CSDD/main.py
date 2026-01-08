@@ -33,4 +33,4 @@ def page_beta():
     beta_map.create_page()
 
 # --- CHẠY SERVER ---
-ui.run(title="University Navigation", port=7000)
+ui.run(title="University Navigation", port=8000)
