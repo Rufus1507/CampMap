@@ -5,6 +5,7 @@ import io
 import base64
 import random
 import math
+import re
 
 # ============================================================================
 # CONSTANTS - DỮ LIỆU TỌA ĐỘ CÁC TẦNG
@@ -101,7 +102,7 @@ FLOOR_5_LOCATIONS = {
     "516": (258, 200),
     "WC MALE (F5)": (258, 600), "WC FEMALE (F5)": (258, 406),
     "STAIRS_F5_B": (141, 505), "ELEVATOR_5": (703, 503),
-    "STAIRS_F5_A": (503, 862),
+    "STAIRS_F5_A": (862, 503),
     "F5_1": (258, 505), "F5_2": (258, 689), "F5_3": (500, 689),
     "F5_4": (740, 689), "F5_5": (740, 503)
 }
@@ -480,6 +481,41 @@ CUSTOM_CSS = """
 
 count = 0
 
+def start_voice():
+    ui.run_javascript('''
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRecognition) {
+            emitEvent('voice-error', {message: 'Browser không hỗ trợ'});
+            return;
+        }
+
+        function runRecognition(lang) {
+            return new Promise((resolve, reject) => {
+                const r = new SpeechRecognition();
+                r.lang = lang;
+                r.continuous = false;
+                r.interimResults = false;
+
+                r.onresult = (e) =>
+                    resolve(e.results[0][0].transcript);
+
+                r.onerror = () => reject();
+                r.start();
+            });
+        }
+
+        // Thử tiếng Việt trước
+        runRecognition('vi-VN')
+            .then(text => emitEvent('voice-result', { text: text.toUpperCase() }))
+            .catch(() => {
+                // Fail → thử tiếng Anh
+                runRecognition('en-US')
+                    .then(text => emitEvent('voice-result', { text: text.toUpperCase() }))
+                    .catch(() =>
+                        emitEvent('voice-error', { message: 'Không nhận dạng được giọng nói' })
+                    );
+            });
+    ''')
 
 def calculate_distance(p1, p2):
     """Tính khoảng cách Euclidean giữa 2 điểm."""
@@ -735,7 +771,12 @@ def create_page():
                             'outlined dense options-dense '
                             'popup-content-class="text-xs"'
                         ).style('font-size: 11px;')
+                ui.button(
+            "🎤 Nói điểm đến",
+            on_click=lambda: start_voice()
+        ).classes('btn-primary text-xs py-1 px-3 mt-1')
 
+            # Update room options on floor change
         # ========== CAMPUS BUTTON ==========
         ui.button(
             "🌍 RA KHỎI TÒA NHÀ",
