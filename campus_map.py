@@ -3,7 +3,7 @@ import networkx as nx
 from PIL import Image, ImageDraw
 import io, base64
 import math
-
+import os
 # ============================================================================
 # CUSTOM CSS STYLES
 # ============================================================================
@@ -93,8 +93,11 @@ CAMPUS_CSS = """
         background: rgba(255, 255, 255, 0.95) !important;
         border-radius: 16px !important;
         box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2) !important;
-        overflow: hidden !important;
+
+        overflow: auto !important;
+        touch-action: pan-x pan-y;
     }
+
     
     .main-title {
         background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
@@ -143,17 +146,17 @@ CAMPUS_CSS = """
 # Visible locations for user selection
 VISIBLE_LOCATIONS = {
     "PARKING LOT A": (190, 840), "GATE": (500, 900), "PARKING LOT B": (170, 600),
-    "THE THINKER": (470, 760), "ALPHA BUILDING": (400, 500), "BETA BUILDING": (720, 700),
+    "THE THINKER": (470, 760), "GAMMA BUILDING": (400, 500), "BETA BUILDING": (720, 700),
     "CANTEEN": (580, 390), "SOCCER": (880, 440), "BASKETBALL": (840, 330),
     "VOLLEYBALL": (850, 370), "VOVINAM": (900, 300),
-    "HIGHSCHOOL DORMITARY": (1300, 300), "UNIVERSITY DORMITARY": (1370, 480),
+    "DOM A": (1300, 300), "DOM B": (1370, 480),
 }
 
 # Virtual nodes for path connections (hidden from UI)
 VIRTUAL_NODES = {
     "1": (300, 980), "2": (170, 970), "3": (80, 960), "4": (100, 640),
     "5": (590, 840), "BETA": (570, 740), "6": (280, 700), "7": (170, 760),
-    "ALPHA": (420, 640), "8": (530, 600), "9": (420, 900), "10": (350, 700),
+    "GAMMA": (420, 640), "8": (530, 600), "9": (420, 900), "10": (350, 700),
     "11": (380, 800), "12": (700, 540), "13": (730, 500), "14": (910, 380),
     "15": (930, 340), "16": (480, 420), "18": (720, 435), "19": (1060, 320),
     "20": (1120, 350), "21": (1065, 370), "22": (1240, 420), "23": (1300, 410),
@@ -165,53 +168,55 @@ LOCATIONS = {**VISIBLE_LOCATIONS, **VIRTUAL_NODES}
 LOCATIONS_GPS = {
     "GATE": (13.804553052179601, 109.21950215399711),
     "BETA BUILDING": (13.804037728087135, 109.21905987562394),
-    "ALPHA BUILDING": (13.803719317148747, 109.21978179205664),
+    "GAMMA BUILDING": (13.803719317148747, 109.21978179205664),
     "CANTEEN": (13.80346943932719, 109.21935393966768),
     "SOCCER": (13.80358132697852, 109.21871383179098),
-    "UNIVERSITY DORMITARY": (13.803615255456071, 109.21766757243233),
+    "DOM B": (13.803615255456071, 109.21766757243233),
     "PARKING LOT A": (13.804426590467092, 109.22022472831937),
     "PARKING LOT B": (13.803952661753089, 109.22022791802131),
     "THE THINKER": (13.804240736184244, 109.21961230554994),
     "BASKETBALL": (13.803398194907908, 109.21879893155109),
     "VOLLEYBALL": (13.803320755299886, 109.21882444916649),
     "VOVINAM": (13.80322163256409, 109.21863625675296),
-    "HIGHSCHOOL DORMITARY": (13.803221632561929, 109.21778460632828),
+    "DOM A": (13.803221632561929, 109.21778460632828),
 }
 
 # Voice aliases
 VOICE_ALIAS = {
-    "CANTEEN": ["CANTEEN", "CAN TEEN", "CAN TIN", "CANTIN", "CANTEAN"],
-    "ALPHA BUILDING": ["ALPHA", "ALPHA BUILDING"],
-    "BETA BUILDING": ["BETA", "BETA BUILDING"],
-    "GATE": ["GATE", "MAIN GATE", "ENTRANCE"],
-    "PARKING LOT A": ["PARKING LOT A", "PARKING A", "PARK A"],
-    "PARKING LOT B": ["PARKING LOT B", "PARKING B", "PARK B"],
-    "THE THINKER": ["THE THINKER", "THINKER", "STATUE"],
-    "SOCCER": ["SOCCER FIELD", "SOCCER", "FOOTBALL FIELD", "FOOTBALL"],
-    "BASKETBALL": ["BASKETBALL COURT", "BASKETBALL"],
-    "VOLLEYBALL": ["VOLLEYBALL COURT", "VOLLEYBALL"],
+    "CANTEEN": ["CANTEEN", "CAN TEEN", "CAN TIN", "CANTIN", "CANTEAN","CĂNG TIN","NHÀ ĂN","CĂN TIN","NHÀ EM","NHÀ ANH","KÊNH TINH",""],
+    "GAMMA BUILDING": ["GAMMA", "GAMMA BUILDING","TÒA GAMMA"],
+    "BETA BUILDING": ["BETA", "BETA BUILDING","TÒA BETA","BETTA"],
+    "GATE": ["GATE", "MAIN GATE", "ENTRANCE","CỔNG","CỔNG TRƯỜNG","CỔNG CHÍNH"],
+    "PARKING LOT A": ["PARKING LOT A", "PARKING A", "PARK A","NHÀ XE A","BÃI ĐẬU XE A","ĐẬU XE A","BÃI ĐỖ XE A","NHÀ XE","BÃI ĐỖ XE","BÃI ĐẬU XE"],
+    "PARKING LOT B": ["PARKING LOT B", "PARKING B", "PARK B","NHÀ XE B","BÃI ĐẬU XE B","ĐẬU XE B","BÃI ĐỖ XE B"],
+    "THE THINKER": ["THE THINKER", "THINKER", "STATUE","TƯỢNG THINKER","TƯỢNG THIN CƠ","TƯỢNG THIÊN CƠ","TƯỢNG","TƯỢNG ĐỜI THIÊN CƠ","TƯỢNG ĐỜ THIÊN CƠ"],
+    "SOCCER": ["SOCCER FIELD", "SOCCER", "FOOTBALL FIELD", "FOOTBALL","SÂN BÓNG ĐÁ","BÓNG ĐÁ","SÂN BÓNG"],
+    "BASKETBALL": ["BASKETBALL COURT", "BASKETBALL","SÂN BÓNG RỔ","BÓNG RỔ"],
+    "VOLLEYBALL": ["VOLLEYBALL COURT", "VOLLEYBALL","SÂN BÓNG CHUYỀN","BÓNG CHUYỀN"],
+    "DOM A":{"DOM A", "DORM A", "KÝ TÚC XÁ A","KÝ TÚC XÁ"},
+    "DOM B":{"DOM B", "DORM B", "KÝ TÚC XÁ B"},
+    "VOVINAM": {"VOVINAM AREA", "VOVINAM","SÂN VÕ VOVINAM","SÂN VÕ","SÂN VOVINAM"},
 }
 
 # Graph edges
 EDGES = [
-    ('BETA', 'BETA BUILDING'), ('ALPHA BUILDING', 'ALPHA'),
+    ('BETA', 'BETA BUILDING'), ('GAMMA BUILDING', 'GAMMA'),
     ("GATE", "1"), ("1", "2"), ("2", "3"), ('2', 'PARKING LOT A'), ('3', '4'),
     ("PARKING LOT B", "4"), ('GATE', 'THE THINKER'), ('GATE', '5'), ('5', 'BETA'),
-    ('BETA', 'THE THINKER'), ('6', 'ALPHA'), ('6', '7'), ('6', 'PARKING LOT B'),
-    ('7', 'PARKING LOT A'), ('BETA', '8'), ('8', '16'), ('8', 'ALPHA'), ('9', 'GATE'),
-    ('9', '10'), ('10', '6'), ('10', 'ALPHA'), ('10', '11'), ('11', 'THE THINKER'),
+    ('BETA', 'THE THINKER'), ('6', 'GAMMA'), ('6', '7'), ('6', 'PARKING LOT B'),
+    ('7', 'PARKING LOT A'), ('BETA', '8'), ('8', '16'), ('8', 'GAMMA'), ('9', 'GATE'),
+    ('9', '10'), ('10', '6'), ('10', 'GAMMA'), ('10', '11'), ('11', 'THE THINKER'),
     ('8', '12'), ('BETA BUILDING', '12'), ('12', '13'), ('13', 'SOCCER'),
     ('SOCCER', '14'), ('14', '15'), ('VOLLEYBALL', '15'), ('BASKETBALL', '15'),
     ('VOVINAM', '15'), ("BASKETBALL", "VOLLEYBALL"), ("VOLLEYBALL", "VOVINAM"),
-    ("BASKETBALL", "VOVINAM"), ('ALPHA BUILDING', '16'), ('16', 'CANTEEN'),
+    ("BASKETBALL", "VOVINAM"), ('GAMMA BUILDING', '16'), ('16', 'CANTEEN'),
     ('CANTEEN', '18'), ('18', '13'), ('18', '14'), ('14', '19'), ('19', '20'),
-    ('20', 'HIGHSCHOOL DORMITARY'), ('SOCCER', '21'), ('21', '22'), ('22', '23'),
-    ('19', '21'), ('23', 'UNIVERSITY DORMITARY'),
-    ("HIGHSCHOOL DORMITARY", "UNIVERSITY DORMITARY")
+    ('20', 'DOM A'), ('SOCCER', '21'), ('21', '22'), ('22', '23'),
+    ('19', '21'), ('23', 'DOM B'),
+    ("DOM A", "DOM B")
 ]
-
-IMAGE_PATH = "khuonvientruong.jpg"
-
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+IMAGE_PATH = os.path.join(BASE_DIR, "khuonvientruong.jpg")
 
 # ============================================================================
 # HELPER FUNCTIONS
@@ -266,10 +271,15 @@ def draw_dashed_line(draw, p1, p2, dash_len=20, gap_len=12, fill="red", width=8)
 # ============================================================================
 # MAIN PAGE FUNCTION
 # ============================================================================
+BASE_SCALE = 1 / 3   # 👈 thu nhỏ 3 lần
+
+current_zoom = 1.0  # zoom logic chỉ lo zoom, không lo scale gốc
+img0 = Image.open(IMAGE_PATH)
+BASE_W, BASE_H = img0.size
+
 
 def create_page():
     """Create Campus Map page."""
-    
     # Inject CSS
     ui.add_head_html(CAMPUS_CSS)
     
@@ -279,7 +289,6 @@ def create_page():
     # State variables
     user_lat, user_lon = None, None
     zoom_level = 1.4
-    
     # ========== HELPER FUNCTIONS ==========
     
     def snap_gps_to_node(lat, lon):
@@ -301,15 +310,15 @@ def create_page():
             return [], float("inf")
     
     def draw_base_map():
-        """Draw base map without path."""
-        try:
-            img = Image.open(IMAGE_PATH).convert("RGB")
-            buf = io.BytesIO()
-            img.save(buf, format="PNG")
-            return f"data:image/png;base64,{base64.b64encode(buf.getvalue()).decode('utf-8')}"
-        except FileNotFoundError:
+        if not os.path.exists(IMAGE_PATH):
+            print("❌ KHÔNG TÌM THẤY ẢNH:", IMAGE_PATH)
             return ""
-    
+
+        img = Image.open(IMAGE_PATH).convert("RGB")
+        buf = io.BytesIO()
+        img.save(buf, format="PNG")
+        return f"data:image/png;base64,{base64.b64encode(buf.getvalue()).decode()}"
+
     def draw_path(path, user_pixel=None):
         """Draw path on map."""
         try:
@@ -350,58 +359,84 @@ def create_page():
             return ""
     
     def update_path():
-        """Update path display."""
         nonlocal user_lat, user_lon
         if user_lat is None or user_lon is None:
             return
-        
-        end = end_sel.value
+
         start = snap_gps_to_node(user_lat, user_lon)
-        
-        if not start or not end:
+        end = end_sel.value
+
+        if not start:
             return
-        
+
+        # ✅ CHƯA CHỌN ĐIỂM ĐẾN → chỉ vẽ điểm hiện tại
+        if end is None:
+            image_view.source = draw_path([start])
+            distance_label.text = "📍 Vị trí hiện tại"
+            return
+
+        # ✅ ĐIỂM ĐẾN TRÙNG ĐIỂM BẮT ĐẦU
         if start == end:
             image_view.source = draw_path([start])
-            distance_label.text = ""
+            distance_label.text = "📍 Bạn đang ở đây"
             return
-        
+
+        # ✅ CÓ ĐƯỜNG ĐI
         path, dist = find_shortest_path(start, end)
         image_view.source = draw_path(path)
-        distance_label.text = f"📏 {dist:.0f} px"
-    
-    def adjust_zoom(delta):
-        nonlocal zoom_level
-        zoom_level = max(1.0, min(3.0, zoom_level + delta))
+        distance_label.text = f"🚶‍♂️ {dist*2/10:.0f} bước"
+        
+    # ========== ZOOM HANDLER ==========
 
-        image_wrapper.style(
+    def adjust_zoom(delta):
+        global current_zoom
+
+        current_zoom = max(0.5, min(3.0, current_zoom + delta))
+
+        image_view.style(
             f'''
-            transform: scale({zoom_level});
+            transform: scale({current_zoom});
             transform-origin: top left;
             transition: transform 0.2s ease;
             '''
         )
 
-        lbl_zoom.text = f"{int(zoom_level * 100)}%"
-    
+        lbl_zoom.text = f"{int(current_zoom * 100)}%"
+        
     def start_voice():
-        """Start voice recognition."""
         ui.run_javascript('''
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             if (!SpeechRecognition) {
                 emitEvent('voice-error', {message: 'Browser không hỗ trợ'});
                 return;
             }
-            const recog = new SpeechRecognition();
-            recog.lang = 'en-US';
-            recog.continuous = false;
-            recog.interimResults = false;
-            recog.onresult = (event) => {
-                const text = event.results[0][0].transcript.toUpperCase();
-                emitEvent('voice-result', { text });
-            };
-            recog.onerror = (e) => emitEvent('voice-error', {message: e.error});
-            recog.start();
+
+            function runRecognition(lang) {
+                return new Promise((resolve, reject) => {
+                    const r = new SpeechRecognition();
+                    r.lang = lang;
+                    r.continuous = false;
+                    r.interimResults = false;
+
+                    r.onresult = (e) =>
+                        resolve(e.results[0][0].transcript);
+
+                    r.onerror = () => reject();
+                    r.start();
+                });
+            }
+
+            // Thử tiếng Việt trước
+            runRecognition('vi-VN')
+                .then(text => emitEvent('voice-result', { text: text.toUpperCase() }))
+                .catch(() => {
+                    // Fail → thử tiếng Anh
+                    runRecognition('en-US')
+                        .then(text => emitEvent('voice-result', { text: text.toUpperCase() }))
+                        .catch(() =>
+                            emitEvent('voice-error', { message: 'Không nhận dạng được giọng nói' })
+                        );
+                });
         ''')
     
     def start_gps_watch():
@@ -416,7 +451,9 @@ def create_page():
                 { enableHighAccuracy: true }
             );
         ''')
-    
+
+
+
     # ========== EVENT HANDLERS ==========
     
     def on_gps_update(e):
@@ -429,24 +466,23 @@ def create_page():
         spoken_raw = e.args['text'].upper().strip()
         spoken_label.text = f"🎙 {spoken_raw}"
         spoken_norm = normalize_text(spoken_raw)
-        
-        # Match location
-        for loc in VISIBLE_LOCATIONS.keys():
-            if normalize_text(loc) in spoken_norm:
-                end_sel.value = loc
-                update_path()
-                ui.notify(f"🎯 {loc}", type='positive')
-                return
-        
-        # Fallback to aliases
+
+        # 🔥 Gom alias + sắp xếp theo độ dài giảm dần
+        alias_map = []
         for canonical, aliases in VOICE_ALIAS.items():
             for a in aliases:
-                if normalize_text(a) in spoken_norm:
-                    end_sel.value = canonical
-                    update_path()
-                    ui.notify(f"🎯 {canonical}", type='positive')
-                    return
-        
+                alias_map.append((canonical, normalize_text(a)))
+
+        alias_map.sort(key=lambda x: len(x[1]), reverse=True)
+
+        # 🎯 Match alias dài trước
+        for canonical, alias_norm in alias_map:
+            if alias_norm in spoken_norm:
+                end_sel.value = canonical
+                update_path()
+                ui.notify(f"🎯 {canonical}", type='positive')
+                return
+
         ui.notify(f"❌ Không nhận ra: {spoken_raw}", type='warning')
     
     # Register events
@@ -477,21 +513,27 @@ def create_page():
                 # Destination selector
                 end_sel = ui.select(
                     options=list(VISIBLE_LOCATIONS.keys()),
-                    value="BETA BUILDING",
+                    value=None,
                     label="🏁 Điểm đến"
                 ).classes('w-full').props(
                     'outlined dense options-dense hide-dropdown-icon'
                 ).style('font-size: 12px;')
                 
                 # Voice button
-                with ui.row().classes('w-full gap-2'):
+                with ui.column().classes('w-full gap-2'):
                     ui.button("🎤 Nói điểm đến", on_click=start_voice).classes(
                         'flex-1 btn-voice text-xs py-2'
                     )
                     spoken_label = ui.label("🎙 ...").classes(
                         'flex-1 text-xs font-bold text-purple-700 self-center text-center'
                     )
-                
+                    ui.label(
+                            '💡 Bạn có thể nói tiếng Việt hoặc tiếng Anh\n'
+                            'Ví dụ: "NHÀ ĂN" → CANTEEN'
+                        ).classes(
+                            'text-[12px] text-center text-red-500 italic'
+                        )
+
                 # Beta building button
                 ui.button(
                     "🏢 VÀO TÒA BETA",
@@ -511,18 +553,28 @@ def create_page():
                 with ui.row().classes('items-center gap-1'):
                     ui.element('div').classes('w-3 h-3 rounded-full bg-red-600')
                     ui.label("Hiện tại").classes('text-[10px]')
-        
-        # Map Container - có thanh kéo scroll
+        with ui.element('div').classes(
+            'fixed bottom-24 left-4 z-50 pointer-events-auto'
+        ):distance_label = ui.label().classes(
+    'fixed bottom-24 right-4 z-50 pointer-events-none '
+    'text-sm font-bold px-3 py-1 rounded-full bg-white/90 shadow text-gray-700'
+)
+
+
+        # ================= MAP CONTAINER =================
         with ui.element('div').classes(
             'relative w-full map-container'
         ).style(
-            'height: calc(100vh - 280px); min-height: 300px; '
-            'overflow: scroll; '
-            '-webkit-overflow-scrolling: touch;'
+            '''
+            height: calc(100vh - 280px);
+            min-height: 300px;
+            overflow: scroll;
+            -webkit-overflow-scrolling: touch;
+            '''
         ) as map_scroll_container:
-            
-            # Zoom controls - fixed góc trái dưới
-            with ui.element('div').classes('fixed bottom-24 left-4 z-50'):
+        
+            # ================= ZOOM CONTROLS =================
+            with ui.element('div').classes('fixed bottom-60 left-4 z-50'):
                 with ui.column().classes('gap-1'):
                     with ui.row().classes('gap-1'):
                         ui.button("+", on_click=lambda: adjust_zoom(0.2)).classes(
@@ -531,23 +583,25 @@ def create_page():
                         ui.button("−", on_click=lambda: adjust_zoom(-0.2)).classes(
                             'zoom-btn text-xl font-bold'
                         ).props('dense flat')
-                    lbl_zoom = ui.label('140%').classes(
+
+                    lbl_zoom = ui.label('100%').classes(
                         'bg-white/90 px-2 py-1 rounded text-[10px] font-bold text-center shadow'
                     )
-            
-            # Image wrapper - thên transform để scroll hoạt động
-            image_wrapper = ui.element('div').classes('inline-block').style(
-                '''
-                transform: scale(1.4);
-                transform-origin: top left;
-                transition: transform 0.2s ease;
+
+            # ================= MAP IMAGE =================
+            image_view = ui.image(draw_base_map()).style(
+                f'''
+                width: {int(BASE_W * BASE_SCALE * current_zoom)}px;
+                height: {int(BASE_H * BASE_SCALE * current_zoom)}px;
+                max-width: none;
+                max-height: none;
+                display: block;
                 '''
             )
 
-            with image_wrapper:
-                image_view = ui.image(draw_base_map()).classes('w-full h-auto')
-            
-            # Distance label
+
+
+            # ================= DISTANCE LABEL =================
             distance_label = ui.label().classes(
                 'fixed bottom-24 right-4 z-50 text-sm font-bold '
                 'px-3 py-1 rounded-full bg-white/90 shadow text-gray-700'
