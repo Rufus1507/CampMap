@@ -51,54 +51,59 @@ FLOOR_2_LOCATIONS = {
     "216": (245, 825), "217": (245, 950), "218": (245, 895),
     "219": (245, 750), "220": (245, 225),
     "WC MALE (F2)": (245, 600), "WC FEMALE (F2)": (245, 380),
-    "ELEVATOR_2": (750, 500), "STAIRS_F2_B": (780, 500),
-    "STAIRS_F2_A": (245, 500),
+    "ELEVATOR_2": (750, 500), "STAIRS_F2_A": (900, 500),
+    "STAIRS_F2_B": (245, 500),
     "F2_1": (245, 270), "F2_2": (510, 270), "F2_3": (780, 270),
-    "F2_4": (830, 695), "F2_5": (510, 695), "F2_6": (245, 659)
+    "F2_4": (830, 695), "F2_5": (510, 695), "F2_6": (245, 659),
+    "F2_7": (780, 500)
 }
 
 FLOOR_3_LOCATIONS = {
-    "301": (167, 777), "302": (199, 511), "303": (161, 246),
-    "304": (48, 246), "305": (100, 246), "306": (225, 246),
-    "307": (270, 69), "308": (270, 190), "309": (700, 70),
-    "310": (700, 191), "311": (741, 246), "312": (895, 246),
-    "313": (950, 246), "314": (828, 246), "315": (788, 502),
-    "316": (822, 777), "317": (952, 777), "318": (895, 777),
-    "319": (745, 777), "320": (233, 770),
-    "WC MALE (F3)": (603, 777), "WC FEMALE (F3)": (376, 777),
-    "ELEVATOR_3": (495, 246), "STAIRS_F3_B": (495, 777),
-    "STAIRS_F3_A": (495, 180),
-    "F3_1": (270, 777), "F3_2": (270, 500), "F3_3": (270, 246),
-    "F3_4": (697, 246), "F3_5": (700, 503), "F3_6": (695, 777)
+    "301": (520, 200), "302": (520, 201), "303": (780, 167),
+    "304": (780, 42), "305": (780, 90), "306": (780, 230),
+    "307": (957, 272), "308": (841, 272), "309": (958, 695),
+    "310": (838, 695), "311": (780, 736), "312": (780, 900),
+    "313": (780, 957), "314": (780, 818), "315": (520, 781),
+    "316": (520, 780), "317": (247, 817), "318": (247, 955),
+    "319": (247, 904), "320": (247, 735), "321": (247, 233),
+    "322": (247, 95), "323": (247, 43), "324": (247, 170),
+    "WC MALE (F3)": (247, 604), "WC FEMALE (F3)": (247, 370),
+    "ELEVATOR_3": (746, 500), "STAIRS_F3_A": (918, 500),
+    "STAIRS_F3_B": (247, 488),
+    "F3_1": (247, 272), "F3_2": (520, 272), "F3_3": (780, 272),
+    "F3_4": (780, 500), "F3_5": (780, 695), "F3_6": (520, 695),
+    "F3_7": (247, 695)
 }
 
 FLOOR_4_LOCATIONS = {
-    "401": (167, 777), "402": (199, 511), "403": (161, 246),
-    "404": (48, 246), "405": (100, 246), "406": (225, 246),
-    "407": (270, 69), "408": (270, 190), "409": (700, 70),
-    "410": (700, 191), "411": (741, 246), "412": (895, 246),
-    "413": (950, 246), "414": (828, 246), "415": (788, 502),
-    "416": (822, 777), "417": (952, 777), "418": (895, 777),
-    "419": (745, 777), "420": (233, 770),
-    "WC MALE (F4)": (603, 777), "WC FEMALE (F4)": (376, 777),
-    "ELEVATOR_4": (495, 246), "STAIRS_F4_B": (495, 777),
-    "STAIRS_F4_A": (495, 180),
-    "F4_1": (270, 777), "F4_2": (270, 500), "F4_3": (270, 246),
-    "F4_4": (697, 246), "F4_5": (700, 503), "F4_6": (695, 777)
+    "401": (520, 200), "402": (520, 201), "403": (780, 167),
+    "404": (780, 42), "405": (780, 90), "406": (780, 230),
+    "407": (957, 272), "408": (841, 272), "409": (958, 695),
+    "410": (838, 695), "411": (780, 736), "412": (780, 900),
+    "413": (780, 957), "414": (780, 818), "415": (520, 781),
+    "416": (520, 780), "417": (247, 817), "418": (247, 955),
+    "419": (247, 904), "420": (247, 735), "421": (247, 233),
+    "422": (247, 95), "423": (247, 43), "424": (247, 170),
+    "WC MALE (F4)": (247, 604), "WC FEMALE (F4)": (247, 370),
+    "ELEVATOR_4": (746, 500), "STAIRS_F4_A": (918, 500),
+    "STAIRS_F4_B": (247, 488),
+    "F4_1": (247, 272), "F4_2": (520, 272), "F4_3": (780, 272),
+    "F4_4": (780, 500), "F4_5": (780, 695), "F4_6": (520, 695),
+    "F4_7": (247, 695)
 }
 
 FLOOR_5_LOCATIONS = {
-    "501": (361, 282), "502": (415, 251), "503": (688, 251),
-    "504": (732, 282), "505": (361, 282), "506": (859, 282),
-    "507": (804, 282), "508": (753, 469), "509": (758, 571),
-    "510": (806, 765), "511": (907, 765), "512": (806, 765),
-    "513": (732, 765), "514": (320, 765), "515": (105, 765),
-    "516": (200, 765),
-    "WC MALE (F5)": (600, 765), "WC FEMALE (F5)": (407, 765),
-    "STAIRS_F5_B": (505, 831), "ELEVATOR_5": (505, 282),
-    "STAIRS_F5_A": (504, 232),
-    "F5_1": (689, 282), "F5_2": (689, 765), "F5_3": (505, 765),
-    "F5_4": (689, 470), "F5_5": (689, 571)
+    "501": (740, 350), "502": (780, 416), "503": (790, 689),
+    "504": (740, 733), "505": (740, 856), "506": (740, 905),
+    "507": (740, 800), "508": (500, 768), "509": (501, 768),
+    "510": (258, 806), "511": (258, 911), "512": (258, 855),
+    "513": (258, 734), "514": (258, 318), "515": (258, 106),
+    "516": (258, 200),
+    "WC MALE (F5)": (258, 600), "WC FEMALE (F5)": (258, 406),
+    "STAIRS_F5_B": (141, 505), "ELEVATOR_5": (703, 503),
+    "STAIRS_F5_A": (503, 862),
+    "F5_1": (258, 505), "F5_2": (258, 689), "F5_3": (500, 689),
+    "F5_4": (740, 689), "F5_5": (740, 503)
 }
 
 ALL_FLOORS = {
@@ -114,7 +119,8 @@ ROOMS_DATABASE = {
     "Floor 1": [
         "EXTRA FRONT", "STAIRS_F1_A", "LAB AI", "IT SP", "MEETING ROOM",
         "STUDENTS SP", "BRONZE DRUM", "ADMISSIONS OFFICE", "WC MALE (F1)",
-        "WC FEMALE (F1)", "LIBRARY", "STAIRS_F1_B", "MAIN HALL",
+        "WC FEMALE (F1)", "LIBRARY", "STAIRS_F1_B",
+        "MAIN HALL",
         "EXTRA BACK", "ELEVATOR_1"
     ],
     "Floor 2": [
@@ -137,10 +143,60 @@ ROOMS_DATABASE = {
     ],
     "Floor 5": [
         "501", "502", "503", "504", "505", "506", "507", "508", "509",
-        "510", "511", "512", "513", "515", "515", "516", "WC MALE (F5)",
+        "510", "511", "512", "513", "514", "515", "516", "WC MALE (F5)",
         "WC FEMALE (F5)", "ELEVATOR_5", "STAIRS_F5_B", "STAIRS_F5_A"
     ]
 }
+DISPLAY_NAMES = {
+    # ===== FLOOR 1 =====
+    "EXTRA FRONT": "Cổng trước",
+    "EXTRA BACK": "Cổng sau",
+    "MAIN HALL": "Sảnh chính",
+    "BRONZE DRUM": "Trống đồng",
+    "ADMISSIONS OFFICE": "Phòng tuyển sinh",
+    "STUDENTS SP": "Phòng công tác sinh viên",
+    "MEETING ROOM": "Phòng họp",
+    "IT SP": "Phòng IT",
+    "LAB AI": "Phòng Lab AI",
+    "LIBRARY": "Thư viện",
+    "WC MALE (F1)": "WC Nam (Tầng 1)",
+    "WC FEMALE (F1)": "WC Nữ (Tầng 1)",
+    "STAIRS_F1_A": "Cầu thang A (Tầng 1)",
+    "STAIRS_F1_B": "Cầu thang B (Tầng 1)",
+    "ELEVATOR_1": "Thang máy (Tầng 1)",
+
+    # ===== FLOOR 2 =====
+    "WC MALE (F2)": "WC Nam (Tầng 2)",
+    "WC FEMALE (F2)": "WC Nữ (Tầng 2)",
+    "STAIRS_F2_A": "Cầu thang A (Tầng 2)",
+    "STAIRS_F2_B": "Cầu thang B (Tầng 2)",
+    "ELEVATOR_2": "Thang máy (Tầng 2)",
+
+    # ===== FLOOR 3 =====
+    "WC MALE (F3)": "WC Nam (Tầng 3)",
+    "WC FEMALE (F3)": "WC Nữ (Tầng 3)",
+    "STAIRS_F3_A": "Cầu thang A (Tầng 3)",
+    "STAIRS_F3_B": "Cầu thang B (Tầng 3)",
+    "ELEVATOR_3": "Thang máy (Tầng 3)",
+
+    # ===== FLOOR 4 =====
+    "WC MALE (F4)": "WC Nam (Tầng 4)",
+    "WC FEMALE (F4)": "WC Nữ (Tầng 4)",
+    "STAIRS_F4_A": "Cầu thang A (Tầng 4)",
+    "STAIRS_F4_B": "Cầu thang B (Tầng 4)",
+    "ELEVATOR_4": "Thang máy (Tầng 4)",
+
+    # ===== FLOOR 5 =====
+    "WC MALE (F5)": "WC Nam (Tầng 5)",
+    "WC FEMALE (F5)": "WC Nữ (Tầng 5)",
+    "STAIRS_F5_A": "Cầu thang A (Tầng 5)",
+    "STAIRS_F5_B": "Cầu thang B (Tầng 5)",
+    "ELEVATOR_5": "Thang máy (Tầng 5)",
+    "501": "501: Hội truường",
+    "516": "516: Hội trường",
+}
+def display_name(node):
+    return DISPLAY_NAMES.get(node, node)
 
 # ============================================================================
 # GRAPH EDGES - ĐỊNH NGHĨA CÁC ĐƯỜNG ĐI
@@ -170,63 +226,73 @@ EDGES_FLOOR_1 = [
     ("LIBRARY", "STAIRS_F1_B"), ("F1_2", "STAIRS_F1_B"),
     ("IT SP", "STAIRS_F1_B"), ("F1_4", "ADMISSIONS OFFICE"),
     ("MAIN HALL", "LIBRARY"), ("MEETING ROOM", "F1_1"),
-    ("F1_1", "ELEVATOR_1"), ("F1_1", "STAIRS_F1_A")
+    ("F1_1", "ELEVATOR_1"), ("F1_1", "STAIRS_F1_A"),("EXTRA FRONT", "ADMISSIONS OFFICE"),
+    ("STAIRS_F1_A", "WC MALE (F1)"), ("STAIRS_F1_A", "WC FEMALE (F1)"),
+    ("STAIRS_F1_A", "STAIRS_F1_B"), ("STAIRS_F1_A", "EXTRA BACK"),
+    ("MEETING ROOM", "WC MALE (F1)"),( "MEETING ROOM", "WC FEMALE (F1)"),
+    ("MEETING ROOM", "LIBRARY"), ("MEETING ROOM", "STAIRS_F1_B"),
+    ("MEETING ROOM", "EXTRA BACK"), ("STUDENTS SP", "EXTRA FRONT"),
+    ("BRONZE DRUM", "WC FEMALE (F1)"), ("ADMISSIONS OFFICE", "WC FEMALE (F1)"),
+    ("EXTRA FRONT", "WC FEMALE (F1)"),  ("LIBRARY", "STAIRS_F1_A")
 ]
 
 EDGES_FLOOR_2 = [
     ('201', '220'), ('220', 'F2_1'), ('F2_1', 'WC FEMALE (F2)'),
     ('WC FEMALE (F2)', 'STAIRS_F2_B'), ('STAIRS_F2_B', 'WC MALE (F2)'),
-    ('WC MALE (F2)', '219'), ('219', '216'), ('216', '218'),
-    ('218', '217'), ('WC MALE (F2)', 'F2_6'), ('F2_1', 'F2_2'),
+    ('WC MALE (F2)', 'F2_6'),('F2_6', '219'), ('219', '216'),
+    ('216', '218'), ('218', '217'), ('F2_1', 'F2_2'),
     ('F2_2', '202'), ('F2_2', 'F2_3'), ('F2_3', '208'),
     ('208', '207'), ('F2_3', '206'), ('206', '203'),
-    ('203', '205'), ('205', '204'), ('F2_3', 'ELEVATOR_2'),
-    ('ELEVATOR_2', 'STAIRS_F2_A'), ('ELEVATOR_2', 'F2_4'),
-    ('F2_4', '210'), ('210', '209'), ('F2_4', '211'),
-    ('211', '214'), ('214', '212'), ('212', '213'),
-    ('F2_4', 'F2_5'), ('F2_5', '215'), ('F2_5', 'F2_6')
+    ('203', '205'), ('205', '204'), ('F2_3', 'F2_7'),
+    ('F2_7', 'STAIRS_F2_A'), ('F2_7', 'ELEVATOR_2'),
+    ('F2_7', 'F2_4'), ('F2_4', '210'), ('210', '209'),
+    ('F2_4', '211'), ('211', '214'), ('214', '212'),
+    ('212', '213'), ('F2_4', 'F2_5'), ('F2_5', '215'), ('F2_5', 'F2_6')
 ]
 
 EDGES_FLOOR_3 = [
-    ('301', '320'), ('320', 'F3_1'), ('F3_1', 'WC FEMALE (F3)'),
-    ('WC FEMALE (F3)', 'STAIRS_F3_B'), ('STAIRS_F3_B', 'WC MALE (F3)'),
-    ('WC MALE (F3)', '319'), ('319', '316'), ('316', '318'),
-    ('318', '317'), ('WC MALE (F3)', 'F3_6'), ('F3_1', 'F3_2'),
-    ('F3_2', '302'), ('F3_2', 'F3_3'), ('F3_3', '308'),
-    ('308', '307'), ('F3_3', '306'), ('306', '303'),
-    ('303', '305'), ('305', '304'), ('F3_3', 'ELEVATOR_3'),
-    ('ELEVATOR_3', 'STAIRS_F3_A'), ('ELEVATOR_3', 'F3_4'),
-    ('F3_4', '310'), ('310', '309'), ('F3_4', '311'),
-    ('311', '314'), ('314', '312'), ('312', '313'),
-    ('F3_4', 'F3_5'), ('F3_5', '315'), ('F3_5', 'F3_6')
+    ('323', '322'), ('322', '324'), ('324', '321'),
+    ('321', 'F3_1'), ('F3_1', 'F3_2'),
+    ('F3_2', '301'), ('301', '302'), ('F3_2', 'F3_3'),
+    ('F3_3', '306'), ('306', '303'), ('303', '305'),
+    ('305', '304'), ('F3_3', '308'), ('308', '307'),
+    ('F3_3', 'F3_4'), ('F3_4', 'ELEVATOR_3'), ('F3_4', 'STAIRS_F3_A'),
+    ('F3_4', 'F3_5'), ('F3_5', '310'), ('310', '309'),
+    ('F3_5', '311'), ('311', '314'),
+    ('314', '312'), ('312', '313'), ('F3_5', 'F3_6'),
+    ('F3_6', '315'), ('315', '316'), ('F3_6', 'F3_7'),
+    ('F3_7', '320'), ('320', '317'), ('317', '319'),
+    ('319', '318'), ('F3_7', 'WC MALE (F3)'), ('WC MALE (F3)', 'STAIRS_F3_B'),
+    ('STAIRS_F3_B', 'WC FEMALE (F3)'), ('WC FEMALE (F3)', 'F3_1')
 ]
 
 EDGES_FLOOR_4 = [
-    ('401', '420'), ('420', 'F4_1'), ('F4_1', 'WC FEMALE (F4)'),
-    ('WC FEMALE (F4)', 'STAIRS_F4_B'), ('STAIRS_F4_B', 'WC MALE (F4)'),
-    ('WC MALE (F4)', '419'), ('419', '416'), ('416', '418'),
-    ('418', '417'), ('WC MALE (F4)', 'F4_6'), ('F4_1', 'F4_2'),
-    ('F4_2', '402'), ('F4_2', 'F4_3'), ('F4_3', '408'),
-    ('408', '407'), ('F4_3', '406'), ('406', '403'),
-    ('403', '405'), ('405', '404'), ('F4_3', 'ELEVATOR_4'),
-    ('ELEVATOR_4', 'STAIRS_F4_A'), ('ELEVATOR_4', 'F4_4'),
-    ('F4_4', '410'), ('410', '409'), ('F4_4', '411'),
-    ('411', '414'), ('414', '412'), ('412', '413'),
-    ('F4_4', 'F4_5'), ('F4_5', '415'), ('F4_5', 'F4_6'),
-    ('401', 'WC MALE (F4)')
+    ('423', '422'), ('422', '424'), ('424', '421'),
+    ('421', 'F4_1'), ('F4_1', 'F4_2'),
+    ('F4_2', '401'), ('401', '402'), ('F4_2', 'F4_3'),
+    ('F4_3', '406'), ('406', '403'), ('403', '405'),
+    ('405', '404'), ('F4_3', '408'), ('408', '407'),
+    ('F4_3', 'F4_4'), ('F4_4', 'ELEVATOR_4'), ('F4_4', 'STAIRS_F4_A'),
+    ('F4_4', 'F4_5'), ('F4_5', '410'), ('410', '409'),
+    ('F4_5', '411'), ('411', '414'),
+    ('414', '412'), ('412', '413'), ('F4_5', 'F4_6'),
+    ('F4_6', '415'), ('415', '416'), ('F4_6', 'F4_7'),
+    ('F4_7', '420'), ('420', '417'), ('417', '419'),
+    ('419', '418'), ('F4_7', 'WC MALE (F4)'), ('WC MALE (F4)', 'STAIRS_F4_B'),
+    ('STAIRS_F4_B', 'WC FEMALE (F4)'), ('WC FEMALE (F4)', 'F4_1')
 ]
 
 EDGES_FLOOR_5 = [
-    ('501', '502'), ('501', 'ELEVATOR_5'), ('ELEVATOR_5', 'STAIRS_F5_A'),
-    ('ELEVATOR_5', 'F5_1'), ('F5_1', '503'), ('F5_1', '504'),
-    ('504', '507'), ('507', '505'), ('505', '506'),
-    ('F5_1', 'F5_4'), ('F5_4', 'F5_5'), ('F5_4', '508'),
-    ('F5_5', '509'), ('F5_5', 'F5_2'), ('F5_2', '513'),
-    ('513', '510'), ('510', '512'), ('512', '511'),
-    ('F5_2', '504'), ('F5_2', 'WC MALE (F5)'),
-    ('WC MALE (F5)', 'F5_3'), ('F5_3', 'WC FEMALE (F5)'),
-    ('WC FEMALE (F5)', '514'), ('514', '516'), ('516', '515'),
-    ('502', 'ELEVATOR_5'), ('STAIRS_F5_B', 'F5_3')
+    ('501', '502'), ('501', 'F5_5'), ('F5_5', 'ELEVATOR_5'),
+    ('502', 'F5_5'), ('F5_5', 'STAIRS_F5_A'), ('F5_5', 'F5_4'),
+    ('F5_4', '503'), ('F5_4', '504'), ('504', '507'),
+    ('507', '505'), ('505', '506'), ('F5_4', 'F5_3'),
+    ('F5_3', '508'), ('508', '509'), ('F5_3', 'F5_2'),
+    ('F5_2', '513'), ('513', '510'), ('510', '512'),
+    ('512', '511'), ('F5_2', 'WC MALE (F5)'),
+    ('WC MALE (F5)', 'F5_1'), ('F5_1', 'WC FEMALE (F5)'),
+    ('F5_1', 'STAIRS_F5_B'), ('WC FEMALE (F5)', '514'), ('514', '516'),
+    ('516', '515')
 ]
 
 # ============================================================================
@@ -443,7 +509,7 @@ def build_graph():
     for i in range(1, 5):
         G.add_edge(f"STAIRS_F{i}_A", f"STAIRS_F{i+1}_A", weight=50, type='stair')
         G.add_edge(f"STAIRS_F{i}_B", f"STAIRS_F{i+1}_B", weight=50, type='stair')
-        G.add_edge(f"ELEVATOR_{i}", f"ELEVATOR_{i+1}", weight=10, type='elevator')
+        # G.add_edge(f"ELEVATOR_{i}", f"ELEVATOR_{i+1}", weight=10, type='elevator')
     
     return G
 
@@ -502,31 +568,31 @@ def draw_path_on_floor(path, floor_name):
             
             is_start = (node == path[0])
             is_end = (node == path[-1])
-            is_stair = "STAIRS" in node
-            is_elev = "ELEVATOR" in node
+            # is_stair = "STAIRS" in node
+            # is_elev = "ELEVATOR" in node
             
-            if is_start or is_end or is_stair or is_elev:
+            if is_start or is_end:
                 # Chọn màu và kích thước
                 if is_start:
                     fill_color = "#2ED573"  # Xanh lá sáng
                     text_label = ""
-                    size = 25
+                    size = 19
                     outline_color = "#1e8449"
                 elif is_end:
                     fill_color = "#FF4757"  # Đỏ sáng
                     text_label = ""
-                    size = 25
+                    size = 19
                     outline_color = "#c0392b"
-                elif is_elev:
-                    fill_color = "#9B59B6"  # Tím
-                    text_label = node
-                    size = 18
-                    outline_color = "#6c3483"
-                else:
-                    fill_color = "#F39C12"  # Cam
-                    text_label = node
-                    size = 18
-                    outline_color = "#d68910"
+                # elif is_elev:
+                #     fill_color = "#9B59B6"  # Tím
+                #     text_label = node
+                #     size = 18
+                #     outline_color = "#6c3483"
+                # else:
+                #     fill_color = "#F39C12"  # Cam
+                #     text_label = node
+                #     size = 18
+                #     outline_color = "#d68910"
                 
                 # Vẽ shadow
                 draw.ellipse(
@@ -596,18 +662,18 @@ def create_page():
     with ui.column().classes('w-full p-2 gap-2'):
         
         # Elevator Status Card (Fixed position)
-        with ui.card().classes(
-            'fixed top-2 right-2 z-50 elevator-card p-2 floating'
-        ):
-            with ui.row().classes('items-center gap-2'):
-                ui.label('🛗').classes('text-lg')
-                with ui.column().classes('gap-0'):
-                    ui.label('Thang máy:').classes(
-                        'text-[10px] text-gray-600 font-medium'
-                    )
-                    lbl_elev_floor = ui.label(
-                        elevator_state['current_floor']
-                    ).classes('font-bold text-orange-700 text-sm')
+        # with ui.card().classes(
+        #     'fixed top-2 right-2 z-50 elevator-card p-2 floating'
+        # ):
+        #     with ui.row().classes('items-center gap-2'):
+        #         ui.label('🛗').classes('text-lg')
+        #         with ui.column().classes('gap-0'):
+        #             ui.label('Thang máy:').classes(
+        #                 'text-[10px] text-gray-600 font-medium'
+        #             )
+        #             lbl_elev_floor = ui.label(
+        #                 elevator_state['current_floor']
+        #             ).classes('font-bold text-orange-700 text-sm')
         
         # Back Button & Title
         with ui.row().classes('w-full items-center gap-2'):
@@ -637,9 +703,9 @@ def create_page():
                             'outlined dense options-dense '
                             'popup-content-class="text-xs"'
                         ).style('font-size: 11px;')
-                        
+
                         s_room = ui.select(
-                            ROOMS_DATABASE["Floor 1"],
+                            options={k: display_name(k) for k in ROOMS_DATABASE["Floor 1"]},
                             value="EXTRA FRONT",
                             label="Phòng"
                         ).classes('w-full').props(
@@ -660,16 +726,16 @@ def create_page():
                             'outlined dense options-dense '
                             'popup-content-class="text-xs"'
                         ).style('font-size: 11px;')
-                        
+
                         e_room = ui.select(
-                            ROOMS_DATABASE["Floor 1"],
+                            options={k: display_name(k) for k in ROOMS_DATABASE["Floor 1"]},
                             value="EXTRA FRONT",
                             label="Phòng"
                         ).classes('w-full').props(
                             'outlined dense options-dense '
                             'popup-content-class="text-xs"'
                         ).style('font-size: 11px;')
-        
+
         # ========== CAMPUS BUTTON ==========
         ui.button(
             "🌍 RA KHỎI TÒA NHÀ",
@@ -693,17 +759,17 @@ def create_page():
                     ).style('background: linear-gradient(135deg, #eb3349, #f45c43);')
                     ui.label("Đến").classes('text-[10px] font-medium')
                 
-                with ui.row().classes('items-center gap-1'):
-                    ui.element('div').classes(
-                        'w-3 h-3 rounded-full bg-orange-500'
-                    )
-                    ui.label("Thang bộ").classes('text-[10px] font-medium')
-                
-                with ui.row().classes('items-center gap-1'):
-                    ui.element('div').classes(
-                        'w-3 h-3 rounded-full bg-purple-500'
-                    )
-                    ui.label("Thang máy").classes('text-[10px] font-medium')
+                # with ui.row().classes('items-center gap-1'):
+                #     ui.element('div').classes(
+                #         'w-3 h-3 rounded-full bg-orange-500'
+                #     )
+                #     ui.label("Thang bộ").classes('text-[10px] font-medium')
+                #
+                # with ui.row().classes('items-center gap-1'):
+                #     ui.element('div').classes(
+                #         'w-3 h-3 rounded-full bg-purple-500'
+                #     )
+                #     ui.label("Thang máy").classes('text-[10px] font-medium')
         
         # ========== MAP DISPLAY ==========
         image_container = ui.column().classes(
@@ -712,15 +778,15 @@ def create_page():
     
     # ========== LOGIC FUNCTIONS ==========
     
-    def random_route():
-        """Random vị trí thang máy."""
-        elevator_state['current_floor'] = random.choice(floor_list)
-        lbl_elev_floor.text = elevator_state['current_floor']
-        ui.notify(
-            f"🛗 Thang máy đã di chuyển đến {elevator_state['current_floor']}",
-            type='positive',
-            position='top-right'
-        )
+    # def random_route():
+    #     """Random vị trí thang máy."""
+    #     elevator_state['current_floor'] = random.choice(floor_list)
+    #     lbl_elev_floor.text = elevator_state['current_floor']
+    #     ui.notify(
+    #         f"🛗 Thang máy đã di chuyển đến {elevator_state['current_floor']}",
+    #         type='positive',
+    #         position='top-right'
+    #     )
     
     def calculate_time(path, graph_source):
         """Tính thời gian di chuyển."""
@@ -739,15 +805,17 @@ def create_page():
             elif etype == 'stair':
                 time += 20
             elif etype == 'elevator':
-                floors_vertical += 1
-                used_elevator = True
+                """ penaty thang máy"""
+                time += 10000
+                # floors_vertical += 1
+                # used_elevator = True
         
-        if used_elevator and floors_vertical > 0:
-            elev_f_num = int(elevator_state['current_floor'].split()[-1])
-            user_f_num = int(s_floor.value.split()[-1])
-            wait_time = (abs(elev_f_num - user_f_num) * 5) + 10
-            time += (floors_vertical * 5) + wait_time
-        
+        # if used_elevator and floors_vertical > 0:
+        #     elev_f_num = int(elevator_state['current_floor'].split()[-1])
+        #     user_f_num = int(s_floor.value.split()[-1])
+        #     wait_time = (abs(elev_f_num - user_f_num) * 5) + 10
+        #     time += (floors_vertical * 5) + wait_time
+
         return time
     
     def update():
@@ -768,33 +836,38 @@ def create_page():
             ])
             try:
                 p_stair = nx.shortest_path(G_stair, start, end, weight='weight')
-                t_stair = calculate_time(p_stair, G_stair)
+                # t_stair = calculate_time(p_stair, G_stair)
             except Exception:
+                G_stair.remove_edges_from([
+    (u, v) for u, v, d in G.edges(data=True)
+    if d.get('type') == 'elevator'
+])
+
                 p_stair = None
                 t_stair = float('inf')
             
             # Tính đường đi bằng thang máy
-            G_elev = G.copy()
-            G_elev.remove_edges_from([
-                (u, v) for u, v, d in G.edges(data=True)
-                if d.get('type') == 'stair'
-            ])
-            try:
-                p_elev = nx.shortest_path(G_elev, start, end, weight='weight')
-                t_elev = calculate_time(p_elev, G_elev)
-            except Exception:
-                p_elev = None
-                t_elev = float('inf')
+            # G_elev = G.copy()
+            # G_elev.remove_edges_from([
+            #     (u, v) for u, v, d in G.edges(data=True)
+            #     if d.get('type') == 'stair'
+            # ])
+            # try:
+            #     p_elev = nx.shortest_path(G_elev, start, end, weight='weight')
+            #     t_elev = calculate_time(p_elev, G_elev)
+            # except Exception:
+            #     p_elev = None
+            #     t_elev = float('inf')
             
             # Chọn đường đi tối ưu
-            final_path = p_elev if t_elev < t_stair else p_stair
-            
+            # final_path = p_elev if t_elev < t_stair else p_stair
+            final_path = p_stair
             # Random thang máy sau mỗi 5 lần
-            if count == 4:
-                count = 0
-                random_route()
-            else:
-                count += 1
+            # if count == 4:
+            #     count = 0
+            #     random_route()
+            # else:
+            #     count += 1
             
             # Hiển thị bản đồ
             image_container.clear()
@@ -833,14 +906,18 @@ def create_page():
     
     def update_start_rooms():
         """Cập nhật danh sách phòng khi đổi tầng đi."""
-        s_room.options = ROOMS_DATABASE[s_floor.value]
-        s_room.value = s_room.options[0]
+        s_room.options = {
+            k: display_name(k) for k in ROOMS_DATABASE[s_floor.value]
+        }
+        s_room.value = list(s_room.options.keys())[0]
         update()
     
     def update_end_rooms():
         """Cập nhật danh sách phòng khi đổi tầng đến."""
-        e_room.options = ROOMS_DATABASE[e_floor.value]
-        e_room.value = e_room.options[0]
+        e_room.options = {
+            k: display_name(k) for k in ROOMS_DATABASE[e_floor.value]
+        }
+        e_room.value = list(e_room.options.keys())[0]
         update()
     
     # Event bindings
