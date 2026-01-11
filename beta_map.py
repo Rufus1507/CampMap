@@ -118,34 +118,34 @@ ALL_FLOORS = {
 # Danh sách phòng hiển thị cho user chọn
 ROOMS_DATABASE = {
     "Floor 1": [
-        "EXTRA FRONT", "STAIRS_F1_A", "LAB AI", "IT SP", "MEETING ROOM",
+        "EXTRA FRONT","LAB AI", "IT SP", "MEETING ROOM",
         "STUDENTS SP", "BRONZE DRUM", "ADMISSIONS OFFICE", "WC MALE (F1)",
-        "WC FEMALE (F1)", "LIBRARY", "STAIRS_F1_B",
+        "WC FEMALE (F1)", "LIBRARY", 
         "MAIN HALL",
         "EXTRA BACK", "ELEVATOR_1"
     ],
     "Floor 2": [
         "201", "202", "203", "204", "205", "206", "207", "208", "209",
         "210", "211", "212", "213", "214", "215", "216", "217", "218",
-        "219", "220", "WC MALE (F2)", "WC FEMALE (F2)", "ELEVATOR_2",
-        "STAIRS_F2_A", "STAIRS_F2_B"
+        "219", "220", "WC MALE (F2)", "WC FEMALE (F2)", "ELEVATOR_2"
     ],
     "Floor 3": [
         "301", "302", "303", "304", "305", "306", "307", "308", "309",
         "310", "311", "312", "313", "314", "315", "316", "317", "318",
         "319", "320", "WC MALE (F3)", "WC FEMALE (F3)", "ELEVATOR_3",
-        "STAIRS_F3_B", "STAIRS_F3_A"
+        # "STAIRS_F3_B", "STAIRS_F3_A"
     ],
     "Floor 4": [
         "401", "402", "403", "404", "405", "406", "407", "408", "409",
         "410", "411", "412", "413", "414", "415", "416", "417", "418",
         "419", "420", "WC MALE (F4)", "WC FEMALE (F4)", "ELEVATOR_4",
-        "STAIRS_F4_B", "STAIRS_F4_A"
+        # "STAIRS_F4_B", "STAIRS_F4_A"
     ],
     "Floor 5": [
         "501", "502", "503", "504", "505", "506", "507", "508", "509",
         "510", "511", "512", "513", "514", "515", "516", "WC MALE (F5)",
-        "WC FEMALE (F5)", "ELEVATOR_5", "STAIRS_F5_B", "STAIRS_F5_A"
+        "WC FEMALE (F5)", "ELEVATOR_5", 
+        # "STAIRS_F5_B", "STAIRS_F5_A"
     ]
 }
 DISPLAY_NAMES = {
@@ -196,6 +196,61 @@ DISPLAY_NAMES = {
     "501": "501: Hội truường",
     "516": "516: Hội trường",
 }
+
+# Voice aliases cho các phòng đặc biệt
+VOICE_ALIAS = {
+    # LAB AI
+    "LAB AI": ["LAB AI", "PHÒNG AI", "PHONG AI", "AI", "LAP AI", "LÁP AI", "PHÒNG LAB AI"],
+    # IT SP
+    "IT SP": ["PHÒNG IT", "IT SUPPORT", "PHONG IT"],
+    # LIBRARY
+    "LIBRARY": ["THƯ VIỆN", "THU VIEN", "LIBRARY", "PHÒNG THƯ VIỆN"],
+    # MEETING ROOM
+    "MEETING ROOM": ["PHÒNG HỌP", "PHONG HOP", "MEETING", "MEETING ROOM"],
+    # STUDENTS SP
+    "STUDENTS SP": ["CÔNG TÁC SINH VIÊN", "CTSV", "PHÒNG CTSV", "STUDENT SUPPORT"],
+    # ADMISSIONS OFFICE
+    "ADMISSIONS OFFICE": ["TUYỂN SINH", "TUYEN SINH", "PHÒNG TUYỂN SINH", "ADMISSIONS"],
+    # BRONZE DRUM
+    "BRONZE DRUM": ["TRỐNG ĐỒNG", "TRONG DONG", "BRONZE DRUM"],
+    # MAIN HALL
+    "MAIN HALL": ["SẢNH CHÍNH", "SANH CHINH", "SẢNH", "MAIN HALL", "LOBBY"],
+    # EXTRA FRONT
+    "EXTRA FRONT": ["CỔNG TRƯỚC", "CONG TRUOC", "FRONT GATE", "CỔNG CHÍNH"],
+    # EXTRA BACK  
+    "EXTRA BACK": ["CỔNG SAU", "CONG SAU", "BACK GATE"],
+    
+    # ===== WC TẦNG 1 =====
+    "WC MALE (F1)": ["WC NAM TẦNG 1", "NHÀ VỆ SINH NAM TẦNG 1", "TOILET NAM TẦNG 1", "WC NAM TANG 1"],
+    "WC FEMALE (F1)": ["WC NỮ TẦNG 1", "NHÀ VỆ SINH NỮ TẦNG 1", "TOILET NỮ TẦNG 1", "WC NU TANG 1"],
+    
+    # ===== WC TẦNG 2 =====
+    "WC MALE (F2)": ["WC NAM TẦNG 2", "NHÀ VỆ SINH NAM TẦNG 2", "TOILET NAM TẦNG 2", "WC NAM TANG 2"],
+    "WC FEMALE (F2)": ["WC NỮ TẦNG 2", "NHÀ VỆ SINH NỮ TẦNG 2", "TOILET NỮ TẦNG 2", "WC NU TANG 2"],
+    
+    # ===== WC TẦNG 3 =====
+    "WC MALE (F3)": ["WC NAM TẦNG 3", "NHÀ VỆ SINH NAM TẦNG 3", "TOILET NAM TẦNG 3", "WC NAM TANG 3"],
+    "WC FEMALE (F3)": ["WC NỮ TẦNG 3", "NHÀ VỆ SINH NỮ TẦNG 3", "TOILET NỮ TẦNG 3", "WC NU TANG 3"],
+    
+    # ===== WC TẦNG 4 =====
+    "WC MALE (F4)": ["WC NAM TẦNG 4", "NHÀ VỆ SINH NAM TẦNG 4", "TOILET NAM TẦNG 4", "WC NAM TANG 4"],
+    "WC FEMALE (F4)": ["WC NỮ TẦNG 4", "NHÀ VỆ SINH NỮ TẦNG 4", "TOILET NỮ TẦNG 4", "WC NU TANG 4"],
+    
+    # ===== WC TẦNG 5 =====
+    "WC MALE (F5)": ["WC NAM TẦNG 5", "NHÀ VỆ SINH NAM TẦNG 5", "TOILET NAM TẦNG 5", "WC NAM TANG 5"],
+    "WC FEMALE (F5)": ["WC NỮ TẦNG 5", "NHÀ VỆ SINH NỮ TẦNG 5", "TOILET NỮ TẦNG 5", "WC NU TANG 5"],
+    
+    # Floor 5 halls
+    "501": ["HỘI TRƯỜNG 501", "HỘI TRƯỜNG", "HOI TRUONG"],
+    "516": ["HỘI TRƯỜNG 516"],
+}
+
+# Aliases chung cho WC (cần xử lý riêng với context tầng)
+WC_GENERIC_ALIASES = {
+    "MALE": ["WC NAM", "NHÀ VỆ SINH NAM", "TOILET NAM", "WC", "NHÀ VỆ SINH", "TOILET", "VỆ SINH"],
+    "FEMALE": ["WC NỮ", "NHÀ VỆ SINH NỮ", "TOILET NỮ"],
+}
+
 def display_name(node):
     return DISPLAY_NAMES.get(node, node)
 
@@ -305,172 +360,215 @@ CUSTOM_CSS = """
     /* Import Google Fonts */
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
     
+    * {
+        box-sizing: border-box;
+    }
+    
     body {
         font-family: 'Inter', sans-serif !important;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
         min-height: 100vh;
     }
     
     /* Glass Card Effect */
     .glass-card {
-        background: rgba(255, 255, 255, 0.95) !important;
-        backdrop-filter: blur(10px) !important;
-        border: 1px solid rgba(255, 255, 255, 0.2) !important;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
-        border-radius: 16px !important;
+        background: rgba(255, 255, 255, 0.98) !important;
+        backdrop-filter: blur(15px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(15px) saturate(180%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        box-shadow: 
+            0 8px 32px rgba(0, 0, 0, 0.12),
+            inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+        border-radius: 18px !important;
     }
     
     /* Elevator Status Card */
     .elevator-card {
-        background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%) !important;
-        border: 2px solid #f5af19 !important;
-        box-shadow: 0 4px 15px rgba(245, 175, 25, 0.3) !important;
-        border-radius: 12px !important;
+        background: linear-gradient(135deg, #fef3c7 0%, #fcd34d 100%) !important;
+        border: 2px solid #f59e0b !important;
+        box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35) !important;
+        border-radius: 14px !important;
         transition: transform 0.3s ease, box-shadow 0.3s ease !important;
     }
     
     .elevator-card:hover {
-        transform: translateY(-2px) !important;
-        box-shadow: 0 6px 20px rgba(245, 175, 25, 0.4) !important;
+        transform: translateY(-3px) !important;
+        box-shadow: 0 10px 30px rgba(245, 158, 11, 0.45) !important;
     }
     
     /* Primary Button */
     .btn-primary {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%) !important;
         color: white !important;
         border: none !important;
-        border-radius: 12px !important;
+        border-radius: 14px !important;
         font-weight: 600 !important;
         text-transform: none !important;
-        transition: all 0.3s ease !important;
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4) !important;
     }
     
     .btn-primary:hover {
-        transform: translateY(-2px) !important;
-        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5) !important;
+        transform: translateY(-3px) scale(1.02) !important;
+        box-shadow: 0 10px 30px rgba(124, 58, 237, 0.5) !important;
     }
     
     /* Back Button */
     .btn-back {
-        background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%) !important;
+        background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
         color: white !important;
         border: none !important;
-        border-radius: 10px !important;
+        border-radius: 12px !important;
         font-weight: 500 !important;
         text-transform: none !important;
-        transition: all 0.3s ease !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
     }
     
     .btn-back:hover {
-        transform: translateX(-3px) !important;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+        transform: translateX(-4px) !important;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
     }
     
     /* Campus Button */
     .btn-campus {
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+        background: linear-gradient(135deg, #059669 0%, #34d399 100%) !important;
         color: white !important;
         border: none !important;
-        border-radius: 12px !important;
+        border-radius: 14px !important;
         font-weight: 700 !important;
         text-transform: none !important;
-        transition: all 0.3s ease !important;
-        box-shadow: 0 4px 15px rgba(245, 87, 108, 0.4) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        box-shadow: 0 6px 20px rgba(5, 150, 105, 0.4) !important;
     }
     
     .btn-campus:hover {
-        transform: scale(1.02) !important;
-        box-shadow: 0 6px 20px rgba(245, 87, 108, 0.5) !important;
+        transform: scale(1.03) translateY(-2px) !important;
+        box-shadow: 0 10px 30px rgba(5, 150, 105, 0.5) !important;
     }
     
     /* Selection Cards */
     .selection-card {
-        background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%) !important;
+        background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%) !important;
         border: 2px solid #e2e8f0 !important;
         border-radius: 16px !important;
-        transition: all 0.3s ease !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
     }
     
     .selection-card:hover {
-        border-color: #667eea !important;
-        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2) !important;
+        border-color: #7c3aed !important;
+        box-shadow: 0 8px 25px rgba(124, 58, 237, 0.15) !important;
+        transform: translateY(-2px) !important;
     }
     
     /* Legend Card */
     .legend-card {
-        background: rgba(255, 255, 255, 0.9) !important;
-        border: 1px solid #e2e8f0 !important;
-        border-radius: 12px !important;
+        background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(248,250,252,0.95)) !important;
+        border: 1px solid rgba(226, 232, 240, 0.8) !important;
+        border-radius: 14px !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
     }
     
     /* Map Container */
     .map-container {
-        background: rgba(255, 255, 255, 0.95) !important;
-        border-radius: 16px !important;
-        padding: 20px !important;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+        background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(248,250,252,0.98)) !important;
+        border-radius: 18px !important;
+        padding: 16px !important;
+        box-shadow: 
+            0 10px 50px rgba(0, 0, 0, 0.12),
+            inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
     }
     
     /* Floor Label */
     .floor-label-start {
-        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;
+        background: linear-gradient(135deg, #059669 0%, #34d399 100%) !important;
         color: white !important;
-        padding: 8px 20px !important;
-        border-radius: 20px !important;
+        padding: 10px 24px !important;
+        border-radius: 24px !important;
         font-weight: 600 !important;
+        box-shadow: 0 4px 15px rgba(5, 150, 105, 0.3) !important;
     }
     
     .floor-label-end {
-        background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%) !important;
+        background: linear-gradient(135deg, #dc2626 0%, #f87171 100%) !important;
         color: white !important;
-        padding: 8px 20px !important;
-        border-radius: 20px !important;
+        padding: 10px 24px !important;
+        border-radius: 24px !important;
         font-weight: 600 !important;
+        box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3) !important;
     }
     
     /* Title */
     .main-title {
-        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        background: linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #c084fc 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+        filter: drop-shadow(0 2px 10px rgba(124, 58, 237, 0.3));
         font-weight: 700 !important;
     }
     
     /* Image Styling */
     .map-image {
-        border-radius: 12px !important;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
-        transition: transform 0.3s ease !important;
+        border-radius: 14px !important;
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12) !important;
+        transition: transform 0.3s ease, box-shadow 0.3s ease !important;
     }
     
     .map-image:hover {
-        transform: scale(1.02) !important;
+        transform: scale(1.01) !important;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15) !important;
     }
     
     /* Select Styling */
     .q-field--outlined .q-field__control {
-        border-radius: 10px !important;
+        border-radius: 12px !important;
     }
     
     /* Animation */
     @keyframes float {
         0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-5px); }
+        50% { transform: translateY(-6px); }
     }
     
     .floating {
-        animation: float 3s ease-in-out infinite;
+        animation: float 3.5s ease-in-out infinite;
     }
     
     @keyframes pulse-glow {
-        0%, 100% { box-shadow: 0 0 5px rgba(245, 87, 108, 0.5); }
-        50% { box-shadow: 0 0 20px rgba(245, 87, 108, 0.8); }
+        0%, 100% { box-shadow: 0 0 8px rgba(5, 150, 105, 0.4); }
+        50% { box-shadow: 0 0 25px rgba(5, 150, 105, 0.7); }
     }
     
     .pulse-glow {
-        animation: pulse-glow 2s ease-in-out infinite;
+        animation: pulse-glow 2.5s ease-in-out infinite;
+    }
+    
+    /* Voice Button */
+    .btn-voice {
+        background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%) !important;
+        color: white !important;
+        border: none !important;
+        border-radius: 14px !important;
+        font-weight: 700 !important;
+        text-transform: none !important;
+        box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }
+    
+    .btn-voice:hover {
+        transform: scale(1.03) translateY(-2px) !important;
+        box-shadow: 0 10px 30px rgba(124, 58, 237, 0.5) !important;
+    }
+    
+    @keyframes voice-pulse {
+        0%, 100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.5); }
+        50% { box-shadow: 0 0 0 12px rgba(124, 58, 237, 0); }
+    }
+    
+    .voice-active {
+        animation: voice-pulse 1.5s ease-out infinite;
     }
 </style>
 """
@@ -481,41 +579,7 @@ CUSTOM_CSS = """
 
 count = 0
 
-def start_voice():
-    ui.run_javascript('''
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        if (!SpeechRecognition) {
-            emitEvent('voice-error', {message: 'Browser không hỗ trợ'});
-            return;
-        }
-
-        function runRecognition(lang) {
-            return new Promise((resolve, reject) => {
-                const r = new SpeechRecognition();
-                r.lang = lang;
-                r.continuous = false;
-                r.interimResults = false;
-
-                r.onresult = (e) =>
-                    resolve(e.results[0][0].transcript);
-
-                r.onerror = () => reject();
-                r.start();
-            });
-        }
-
-        // Thử tiếng Việt trước
-        runRecognition('vi-VN')
-            .then(text => emitEvent('voice-result', { text: text.toUpperCase() }))
-            .catch(() => {
-                // Fail → thử tiếng Anh
-                runRecognition('en-US')
-                    .then(text => emitEvent('voice-result', { text: text.toUpperCase() }))
-                    .catch(() =>
-                        emitEvent('voice-error', { message: 'Không nhận dạng được giọng nói' })
-                    );
-            });
-    ''')
+# start_voice will be defined inside create_page()
 
 def calculate_distance(p1, p2):
     """Tính khoảng cách Euclidean giữa 2 điểm."""
@@ -679,10 +743,280 @@ def campus_page():
                 on_click=lambda: ui.navigate.to('/')
             ).classes('btn-primary')
 
+e_floor = None
+e_room = None
+update = None
+lbl_voice_text = None
+
+# ================= VOICE NORMALIZATION =================
+
+# Từ đồng nghĩa cho tầng - hỗ trợ nhiều cách nói
+FLOOR_SYNONYMS = {
+    # Tiếng Việt
+    "tầng": "floor",
+    "tang": "floor",
+    "lầu": "floor",
+    "lau": "floor",
+    "tâng": "floor",
+    "tàng": "floor",
+    # Tiếng Anh
+    "fl": "floor",
+    "level": "floor",
+    "storey": "floor",
+    "story": "floor",
+}
+
+# Từ đồng nghĩa cho phòng
+ROOM_SYNONYMS = {
+    "phòng": "room",
+    "phong": "room",
+    "p.": "room",
+    "p": "room",
+    "room": "room",
+    "rm": "room",
+}
+
+# Chuyển số bằng chữ sang số
+NUMBER_WORDS = {
+    "một": "1", "mot": "1", "first": "1",
+    "hai": "2", "second": "2",
+    "ba": "3", "three": "3", "third": "3",
+    "bốn": "4", "bon": "4", "four": "4", "fourth": "4",
+    "năm": "5", "nam": "5", "five": "5", "fifth": "5",
+    "sáu": "6", "sau": "6", "six": "6",
+    "bảy": "7", "bay": "7", "seven": "7",
+    "tám": "8", "tam": "8", "eight": "8",
+    "chín": "9", "chin": "9", "nine": "9",
+    "không": "0", "khong": "0", "zero": "0",
+    "mười": "10", "muoi": "10", "ten": "10",
+}
+
+def normalize_text(text: str) -> str:
+    """Chuẩn hóa văn bản từ giọng nói."""
+    text = text.lower().strip()
+
+    # Chuẩn hóa từ tầng
+    for k, v in FLOOR_SYNONYMS.items():
+        text = text.replace(k, v)
+    
+    # Chuẩn hóa từ phòng
+    for k, v in ROOM_SYNONYMS.items():
+        text = text.replace(k, v)
+
+    # Chuyển số bằng chữ → số
+    for word, digit in NUMBER_WORDS.items():
+        text = re.sub(rf'\b{word}\b', digit, text)
+
+    # Xóa ký tự dư (giữ lại chữ, số và khoảng trắng)
+    text = re.sub(r'[^a-z0-9\s]', '', text)
+    
+    # Loại bỏ khoảng trắng thừa
+    text = re.sub(r'\s+', ' ', text).strip()
+    
+    return text
+
+
+def parse_voice_command(text: str, current_floor: str = "Floor 1"):
+    """
+    Nhận cả:
+    - tầng 2 phòng 201
+    - floor 2 room 201
+    - phòng 201
+    - 201
+    - go to room 201 on floor 2
+    - phòng AI / LAB AI (aliases)
+    - nhà vệ sinh (sử dụng tầng hiện tại)
+    
+    current_floor: Tầng hiện tại ("đi") để sử dụng khi không nói tầng
+    """
+    original_text = text.upper().strip()
+    text = normalize_text(text)
+
+    floor = None
+    room = None
+
+    # ===== BUILD SORTED ALIAS LIST (longest first) =====
+    alias_list = []
+    for canonical, aliases in VOICE_ALIAS.items():
+        for alias in aliases:
+            alias_list.append((canonical, alias))
+    
+    # Sắp xếp theo độ dài alias giảm dần (dài nhất trước)
+    alias_list.sort(key=lambda x: len(x[1]), reverse=True)
+
+    # ===== CHECK VOICE ALIASES =====
+    original_norm = original_text.replace(" ", "")
+    for canonical, alias in alias_list:
+        alias_norm = alias.upper().replace(" ", "")
+        if alias_norm in original_norm:
+            room = canonical
+            # Xác định floor từ room đặc biệt
+            if canonical in FLOOR_1_LOCATIONS:
+                floor = "Floor 1"
+            elif canonical in FLOOR_2_LOCATIONS:
+                floor = "Floor 2"
+            elif canonical in FLOOR_3_LOCATIONS:
+                floor = "Floor 3"
+            elif canonical in FLOOR_4_LOCATIONS:
+                floor = "Floor 4"
+            elif canonical in FLOOR_5_LOCATIONS:
+                floor = "Floor 5"
+            print(f"🎯 [ALIAS MATCHED] {alias} → {canonical} ({floor})")
+            return floor, room
+    
+    # ===== CHECK GENERIC WC ALIASES =====
+    # Tìm số tầng trong text nếu có
+    floor_num = None
+    floor_patterns = [
+        r'TẦNG\s*(\d)',
+        r'TANG\s*(\d)', 
+        r'FLOOR\s*(\d)',
+        r'T(\d)',
+        r'F(\d)',
+    ]
+    for pattern in floor_patterns:
+        match = re.search(pattern, original_text)
+        if match:
+            floor_num = int(match.group(1))
+            break
+    
+    # Check WC generic aliases
+    original_norm = original_text.replace(" ", "")
+    for gender, aliases in WC_GENERIC_ALIASES.items():
+        for alias in sorted(aliases, key=len, reverse=True):
+            alias_norm = alias.upper().replace(" ", "")
+            if alias_norm in original_norm:
+                # Xác định tầng - sử dụng tầng hiện tại nếu không nói
+                if floor_num is None:
+                    # Lấy số tầng từ current_floor (vd: "Floor 3" -> 3)
+                    try:
+                        floor_num = int(current_floor.split()[-1])
+                    except:
+                        floor_num = 1
+                
+                if 1 <= floor_num <= 5:
+                    floor = f"Floor {floor_num}"
+                    if gender == "MALE":
+                        room = f"WC MALE (F{floor_num})"
+                    else:
+                        room = f"WC FEMALE (F{floor_num})"
+                    print(f"🚻 [WC MATCHED] {alias} + Tầng {floor_num} → {room}")
+                    return floor, room
+
+    # ===== ROOM (số phòng 3 chữ số) =====
+    room_match = re.search(r'\b(\d{3})\b', text)
+    if room_match:
+        room = room_match.group(1)
+
+    # ===== FLOOR =====
+    floor_match = re.search(r'floor\s*(\d+)', text)
+    if floor_match:
+        f = int(floor_match.group(1))
+        if 1 <= f <= 5:
+            floor = f"Floor {f}"
+
+    # ===== SUY LUẬN FLOOR TỪ ROOM =====
+    if room and not floor:
+        f = int(room[0])
+        if 1 <= f <= 5:
+            floor = f"Floor {f}"
+
+    return floor, room
+
 
 def create_page():
     """Trang chính - Bản đồ tòa Beta."""
     global count
+    global e_floor, e_room, update
+    
+    # ========== VOICE FUNCTION ==========
+    def start_voice():
+        ui.run_javascript('''
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechRecognition) {
+                emitEvent('voice-error', {message: 'Browser không hỗ trợ'});
+                return;
+            }
+
+            function runRecognition(lang) {
+                return new Promise((resolve, reject) => {
+                    const r = new SpeechRecognition();
+                    r.lang = lang;
+                    r.continuous = false;
+                    r.interimResults = false;
+
+                    r.onresult = (e) =>
+                        resolve(e.results[0][0].transcript);
+
+                    r.onerror = () => reject();
+                    r.start();
+                });
+            }
+
+            // Thử tiếng Việt trước
+            runRecognition('vi-VN')
+                .then(text => emitEvent('voice-result', { text: text.toUpperCase() }))
+                .catch(() => {
+                    // Fail → thử tiếng Anh
+                    runRecognition('en-US')
+                        .then(text => emitEvent('voice-result', { text: text.toUpperCase() }))
+                        .catch(() =>
+                            emitEvent('voice-error', { message: 'Không nhận dạng được giọng nói' })
+                        );
+                });
+        ''')
+    
+    # ========== VOICE EVENT HANDLER ==========
+    def on_voice_result(e):
+        global e_floor, e_room
+        print("✅ [VOICE EVENT RECEIVED]")
+        print("RAW EVENT args:", e.args)
+        
+        # Get text directly like campus_map does
+        spoken_raw = e.args.get('text', '').upper().strip()
+        
+        if not spoken_raw:
+            print("⚠️ [VOICE] Event có nhưng không có nội dung")
+            ui.notify("⚠️ Có tín hiệu nhưng không nghe rõ", type='warning')
+            return
+        
+        print("🎤 [VOICE TEXT]:", spoken_raw)
+        ui.notify(f"🎤 Bạn đã nói: {spoken_raw}", type='info')
+        
+        # Truyền tầng hiện tại (từ ô "Đi") vào parse_voice_command
+        current_start_floor = s_floor.value if s_floor else "Floor 1"
+        floor, room = parse_voice_command(spoken_raw, current_start_floor)
+        print(f"🧠 PARSED → floor={floor}, room={room}")
+        
+        # Nếu không có floor thì báo lỗi
+        if not floor:
+            print("❌ [VOICE] Không parse được tầng")
+            ui.notify("⚠️ Nghe được nhưng không hiểu điểm đến", type='warning')
+            return
+        
+        if floor not in ROOMS_DATABASE:
+            print("❌ [VOICE] Floor không tồn tại:", floor)
+            ui.notify(f"❌ Không có {floor}", type='negative')
+            return
+        
+        # Nếu không có room thì chọn phòng đầu tiên của tầng
+        if not room:
+            room = ROOMS_DATABASE[floor][0]  # Lấy phòng đầu tiên
+            print(f"📍 [VOICE] Chưa chọn phòng, tự động chọn: {room}")
+        
+        if room not in ROOMS_DATABASE[floor]:
+            print("❌ [VOICE] Room không thuộc floor:", room, floor)
+            ui.notify(f"❌ {room} không thuộc {floor}", type='negative')
+            return
+        
+        print("🎯 [VOICE] Điều hướng thành công")
+        
+        e_floor.value = floor
+        e_room.options = {k: display_name(k) for k in ROOMS_DATABASE[floor]}
+        e_room.value = room
+        update()
+        ui.notify(f"🎯 Đã chọn: {display_name(room)} - {floor}", type='positive')
+    # NOTE: Voice event handlers will be registered at the end after s_floor is defined
     
     # Inject CSS
     ui.add_head_html(CUSTOM_CSS)
@@ -776,6 +1110,7 @@ def create_page():
             on_click=lambda: start_voice()
         ).classes('btn-primary text-xs py-1 px-3 mt-1')
 
+        
             # Update room options on floor change
         # ========== CAMPUS BUTTON ==========
         ui.button(
@@ -828,7 +1163,8 @@ def create_page():
     #         type='positive',
     #         position='top-right'
     #     )
-    
+
+
     def calculate_time(path, graph_source):
         """Tính thời gian di chuyển."""
         time = 0
@@ -877,38 +1213,14 @@ def create_page():
             ])
             try:
                 p_stair = nx.shortest_path(G_stair, start, end, weight='weight')
-                # t_stair = calculate_time(p_stair, G_stair)
-            except Exception:
-                G_stair.remove_edges_from([
-    (u, v) for u, v, d in G.edges(data=True)
-    if d.get('type') == 'elevator'
-])
-
+            except nx.NetworkXNoPath:
                 p_stair = None
-                t_stair = float('inf')
-            
-            # Tính đường đi bằng thang máy
-            # G_elev = G.copy()
-            # G_elev.remove_edges_from([
-            #     (u, v) for u, v, d in G.edges(data=True)
-            #     if d.get('type') == 'stair'
-            # ])
-            # try:
-            #     p_elev = nx.shortest_path(G_elev, start, end, weight='weight')
-            #     t_elev = calculate_time(p_elev, G_elev)
-            # except Exception:
-            #     p_elev = None
-            #     t_elev = float('inf')
+            except Exception as e:
+                ui.notify(f"⚠️ Lỗi tính đường đi: {str(e)}", type='negative')
+                p_stair = None
             
             # Chọn đường đi tối ưu
-            # final_path = p_elev if t_elev < t_stair else p_stair
             final_path = p_stair
-            # Random thang máy sau mỗi 5 lần
-            # if count == 4:
-            #     count = 0
-            #     random_route()
-            # else:
-            #     count += 1
             
             # Hiển thị bản đồ
             image_container.clear()
@@ -966,6 +1278,10 @@ def create_page():
     e_floor.on_value_change(update_end_rooms)
     s_room.on_value_change(update)
     e_room.on_value_change(update)
+    
+    # Register voice event handlers (after s_floor is defined)
+    ui.on('voice-result', on_voice_result)
+    ui.on('voice-error', lambda e: ui.notify(f"🎤 Lỗi: {e.args['message']}", type='negative'))
     
     # Initial render
     update()

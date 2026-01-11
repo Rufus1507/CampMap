@@ -14,127 +14,145 @@ CAMPUS_CSS = """
     
     * {
         font-family: 'Inter', sans-serif !important;
+        box-sizing: border-box;
     }
     
     body {
-        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%) !important;
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%) !important;
         min-height: 100vh;
     }
     
     .glass-header {
-        background: rgba(255, 255, 255, 0.95) !important;
-        backdrop-filter: blur(10px) !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+        background: rgba(255, 255, 255, 0.98) !important;
+        backdrop-filter: blur(20px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.08) !important;
     }
     
     .glass-card {
-        background: rgba(255, 255, 255, 0.95) !important;
-        backdrop-filter: blur(10px) !important;
-        border: 1px solid rgba(255, 255, 255, 0.3) !important;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
-        border-radius: 16px !important;
+        background: rgba(255, 255, 255, 0.98) !important;
+        backdrop-filter: blur(15px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.4) !important;
+        box-shadow: 
+            0 8px 32px rgba(0, 0, 0, 0.12),
+            inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+        border-radius: 18px !important;
     }
     
     .btn-back {
-        background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%) !important;
+        background: linear-gradient(135deg, #374151 0%, #1f2937 100%) !important;
         color: white !important;
         border: none !important;
-        border-radius: 10px !important;
+        border-radius: 12px !important;
         font-weight: 600 !important;
         text-transform: none !important;
-        transition: all 0.3s ease !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
     }
     
     .btn-back:hover {
-        transform: translateX(-3px) !important;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+        transform: translateX(-4px) !important;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25) !important;
     }
     
     .btn-voice {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%) !important;
         color: white !important;
         border: none !important;
-        border-radius: 12px !important;
+        border-radius: 14px !important;
         font-weight: 700 !important;
         text-transform: none !important;
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4) !important;
-        transition: all 0.3s ease !important;
+        box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
     
     .btn-voice:hover {
-        transform: scale(1.02) !important;
-        box-shadow: 0 6px 25px rgba(102, 126, 234, 0.5) !important;
+        transform: scale(1.03) translateY(-2px) !important;
+        box-shadow: 0 10px 30px rgba(124, 58, 237, 0.5) !important;
     }
     
     .btn-beta {
-        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;
+        background: linear-gradient(135deg, #059669 0%, #34d399 100%) !important;
         color: white !important;
         border: none !important;
-        border-radius: 12px !important;
+        border-radius: 14px !important;
         font-weight: 700 !important;
         text-transform: none !important;
-        box-shadow: 0 4px 15px rgba(17, 153, 142, 0.4) !important;
-        transition: all 0.3s ease !important;
+        box-shadow: 0 6px 20px rgba(5, 150, 105, 0.4) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
     
     .btn-beta:hover {
-        transform: translateY(-2px) !important;
-        box-shadow: 0 6px 25px rgba(17, 153, 142, 0.5) !important;
+        transform: translateY(-3px) scale(1.02) !important;
+        box-shadow: 0 10px 30px rgba(5, 150, 105, 0.5) !important;
     }
     
     .legend-card {
-        background: rgba(255, 255, 255, 0.9) !important;
-        border-radius: 12px !important;
-        border: 1px solid #e2e8f0 !important;
+        background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(248,250,252,0.95)) !important;
+        border-radius: 14px !important;
+        border: 1px solid rgba(226, 232, 240, 0.8) !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05) !important;
     }
     
     .map-container {
-        background: rgba(255, 255, 255, 0.95) !important;
-        border-radius: 16px !important;
-        box-shadow: 0 8px 40px rgba(0, 0, 0, 0.2) !important;
-
+        background: linear-gradient(135deg, rgba(255,255,255,0.98), rgba(248,250,252,0.98)) !important;
+        border-radius: 18px !important;
+        box-shadow: 
+            0 10px 50px rgba(0, 0, 0, 0.15),
+            inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
         overflow: auto !important;
         touch-action: pan-x pan-y;
     }
-
     
     .main-title {
-        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+        background: linear-gradient(135deg, #059669 0%, #34d399 50%, #6ee7b7 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
+        filter: drop-shadow(0 2px 10px rgba(5, 150, 105, 0.3));
     }
     
     .gps-badge {
-        background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%) !important;
-        border: 2px solid #f5af19 !important;
-        border-radius: 20px !important;
-        box-shadow: 0 4px 15px rgba(245, 175, 25, 0.3) !important;
+        background: linear-gradient(135deg, #fef3c7 0%, #fcd34d 100%) !important;
+        border: 2px solid #f59e0b !important;
+        border-radius: 24px !important;
+        box-shadow: 0 4px 20px rgba(245, 158, 11, 0.35) !important;
+        animation: gps-pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes gps-pulse {
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.9; transform: scale(1.02); }
     }
     
     .zoom-btn {
-        background: linear-gradient(135deg, #ff4757 0%, #ff6b81 100%) !important;
+        background: linear-gradient(135deg, #ef4444 0%, #f87171 100%) !important;
         color: white !important;
         border: none !important;
-        border-radius: 8px !important;
-        box-shadow: 0 2px 8px rgba(255, 71, 87, 0.4) !important;
-        min-width: 36px !important;
-        min-height: 36px !important;
+        border-radius: 12px !important;
+        box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4) !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+        transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }
     
     .zoom-btn:hover {
         transform: scale(1.1) !important;
-        box-shadow: 0 4px 15px rgba(255, 71, 87, 0.5) !important;
+        box-shadow: 0 6px 25px rgba(239, 68, 68, 0.5) !important;
+    }
+    
+    .zoom-btn:active {
+        transform: scale(0.95) !important;
     }
     
     @keyframes pulse-glow {
-        0%, 100% { box-shadow: 0 0 5px rgba(102, 126, 234, 0.5); }
-        50% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.8); }
+        0%, 100% { box-shadow: 0 0 8px rgba(124, 58, 237, 0.4); }
+        50% { box-shadow: 0 0 25px rgba(124, 58, 237, 0.7); }
     }
     
     .pulse-glow {
-        animation: pulse-glow 2s ease-in-out infinite;
+        animation: pulse-glow 2.5s ease-in-out infinite;
     }
 </style>
 """
@@ -553,12 +571,7 @@ def create_page():
                 with ui.row().classes('items-center gap-1'):
                     ui.element('div').classes('w-3 h-3 rounded-full bg-red-600')
                     ui.label("Hiện tại").classes('text-[10px]')
-        with ui.element('div').classes(
-            'fixed bottom-24 left-4 z-50 pointer-events-auto'
-        ):distance_label = ui.label().classes(
-    'fixed bottom-24 right-4 z-50 pointer-events-none '
-    'text-sm font-bold px-3 py-1 rounded-full bg-white/90 shadow text-gray-700'
-)
+        # Distance label will be defined below in the map container
 
 
         # ================= MAP CONTAINER =================

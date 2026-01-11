@@ -9,87 +9,165 @@ MAIN_CSS = """
     
     * {
         font-family: 'Inter', sans-serif !important;
+        box-sizing: border-box;
     }
     
     body {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%) !important;
+        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 40%, #0f3460 70%, #1a1a2e 100%) !important;
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
         min-height: 100vh;
         overflow-x: hidden;
     }
     
+    @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    
     .glass-container {
-        background: rgba(255, 255, 255, 0.15) !important;
-        backdrop-filter: blur(20px) !important;
-        border: 1px solid rgba(255, 255, 255, 0.3) !important;
-        border-radius: 24px !important;
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1) !important;
+        background: rgba(255, 255, 255, 0.08) !important;
+        backdrop-filter: blur(25px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        border-radius: 28px !important;
+        box-shadow: 
+            0 8px 32px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
     }
     
     .main-title {
-        background: linear-gradient(135deg, #fff 0%, #f0f0f0 100%);
+        background: linear-gradient(135deg, #00d4ff 0%, #7c3aed 50%, #f472b6 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
-        text-shadow: 0 4px 30px rgba(255, 255, 255, 0.3);
+        filter: drop-shadow(0 4px 20px rgba(0, 212, 255, 0.3));
+        letter-spacing: 1px;
     }
     
     .card-campus {
-        background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;
+        background: linear-gradient(135deg, #059669 0%, #34d399 50%, #6ee7b7 100%) !important;
         border: none !important;
         border-radius: 20px !important;
-        box-shadow: 0 10px 40px rgba(17, 153, 142, 0.4) !important;
+        box-shadow: 
+            0 10px 40px rgba(5, 150, 105, 0.4),
+            0 4px 15px rgba(52, 211, 153, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
         overflow: hidden !important;
+        position: relative;
+    }
+    
+    .card-campus::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s ease;
+    }
+    
+    .card-campus:hover::before {
+        left: 100%;
     }
     
     .card-campus:hover {
-        transform: translateY(-8px) scale(1.02) !important;
-        box-shadow: 0 20px 60px rgba(17, 153, 142, 0.5) !important;
+        transform: translateY(-10px) scale(1.03) !important;
+        box-shadow: 
+            0 25px 60px rgba(5, 150, 105, 0.5),
+            0 10px 30px rgba(52, 211, 153, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
     }
     
     .card-beta {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        background: linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #c084fc 100%) !important;
         border: none !important;
         border-radius: 20px !important;
-        box-shadow: 0 10px 40px rgba(102, 126, 234, 0.4) !important;
+        box-shadow: 
+            0 10px 40px rgba(124, 58, 237, 0.4),
+            0 4px 15px rgba(168, 85, 247, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
         overflow: hidden !important;
+        position: relative;
+    }
+    
+    .card-beta::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s ease;
+    }
+    
+    .card-beta:hover::before {
+        left: 100%;
     }
     
     .card-beta:hover {
-        transform: translateY(-8px) scale(1.02) !important;
-        box-shadow: 0 20px 60px rgba(102, 126, 234, 0.5) !important;
+        transform: translateY(-10px) scale(1.03) !important;
+        box-shadow: 
+            0 25px 60px rgba(124, 58, 237, 0.5),
+            0 10px 30px rgba(168, 85, 247, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
     }
     
     .card-icon {
-        background: rgba(255, 255, 255, 0.2) !important;
+        background: rgba(255, 255, 255, 0.25) !important;
         border-radius: 50% !important;
-        padding: 16px !important;
-        margin-bottom: 12px !important;
+        padding: 18px !important;
+        margin-bottom: 14px !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card-campus:hover .card-icon,
+    .card-beta:hover .card-icon {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     }
     
     .subtitle {
-        color: rgba(255, 255, 255, 0.9) !important;
-        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        color: rgba(255, 255, 255, 0.85) !important;
+        text-shadow: 0 2px 15px rgba(0, 0, 0, 0.2);
+        letter-spacing: 0.5px;
     }
     
     @keyframes float {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-10px); }
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        25% { transform: translateY(-8px) rotate(-2deg); }
+        50% { transform: translateY(-12px) rotate(0deg); }
+        75% { transform: translateY(-8px) rotate(2deg); }
     }
     
     .floating {
-        animation: float 4s ease-in-out infinite;
+        animation: float 5s ease-in-out infinite;
     }
     
     @keyframes pulse-ring {
-        0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
-        70% { box-shadow: 0 0 0 15px rgba(255, 255, 255, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        0% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.5); }
+        50% { box-shadow: 0 0 0 12px rgba(52, 211, 153, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
     }
     
     .pulse-ring {
-        animation: pulse-ring 2s ease-out infinite;
+        animation: pulse-ring 2.5s ease-out infinite;
+    }
+    
+    @keyframes shimmer {
+        0% { opacity: 0.5; }
+        50% { opacity: 1; }
+        100% { opacity: 0.5; }
+    }
+    
+    .shimmer {
+        animation: shimmer 2s ease-in-out infinite;
     }
     
     /* Mobile responsive */
@@ -99,7 +177,7 @@ MAIN_CSS = """
         }
         .mobile-card {
             width: 100% !important;
-            max-width: 280px !important;
+            max-width: 300px !important;
         }
     }
 </style>
