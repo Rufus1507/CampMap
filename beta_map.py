@@ -55,7 +55,7 @@ FLOOR_2_LOCATIONS = {
     "ELEVATOR_2": (750, 500), "STAIRS_F2_A": (900, 500),
     "STAIRS_F2_B": (245, 500),
     "F2_1": (245, 270), "F2_2": (510, 270), "F2_3": (780, 270),
-    "F2_4": (830, 695), "F2_5": (510, 695), "F2_6": (245, 659),
+    "F2_4": (780, 695), "F2_5": (510, 695), "F2_6": (245, 695),
     "F2_7": (780, 500)
 }
 
@@ -1105,10 +1105,15 @@ def create_page():
                             'outlined dense options-dense '
                             'popup-content-class="text-xs"'
                         ).style('font-size: 11px;')
+            # Voice button with hint in a column
+            with ui.column().classes('items-center gap-1 mt-1'):
                 ui.button(
-            "🎤 Nói điểm đến",
-            on_click=lambda: start_voice()
-        ).classes('btn-primary text-xs py-1 px-3 mt-1')
+                    "🎤 Nhấn để nói điểm đến",
+                    on_click=lambda: start_voice()
+                ).classes('btn-primary text-xs py-1 px-4')
+                ui.label("Nói điểm đến là tên phòng VD: Phòng 201, Phòng 203, Nhà vệ sinh nam tầng 2").classes(
+                    'text-[12px] text-red-500 italic text-center'
+                )
 
         
             # Update room options on floor change
