@@ -233,6 +233,22 @@ EDGES = [
     ('19', '21'), ('23', 'DOM B'),
     ("DOM A", "DOM B")
 ]
+DISPLAY_NAMES = {
+    "GATE": "Cổng",
+    "PARKING LOT A": "Bãi xe A",
+    "PARKING LOT B": "Bãi xe B",
+    "THE THINKER": "Tượng Thinker",
+    "BETA BUILDING": "Tòa Beta",
+    "GAMMA BUILDING": "Tòa Gamma",
+    "CANTEEN": "Nhà ăn",
+    "SOCCER": "Sân bóng đá",
+    "BASKETBALL": "Sân bóng rổ",
+    "VOLLEYBALL": "Sân bóng chuyền",
+    "VOVINAM": "Sân võ Vovinam",
+    "DOM A": "Ký túc xá A",
+    "DOM B": "Ký túc xá B",
+}
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 IMAGE_PATH = os.path.join(BASE_DIR, "khuonvientruong.jpg")
 
@@ -307,6 +323,7 @@ def create_page():
     # State variables
     user_lat, user_lon = None, None
     zoom_level = 1.4
+    use_gps = True  # Biến theo dõi trạng thái GPS
     # ========== HELPER FUNCTIONS ==========
     
     def snap_gps_to_node(lat, lon):
@@ -377,11 +394,16 @@ def create_page():
             return ""
     
     def update_path():
-        nonlocal user_lat, user_lon
-        if user_lat is None or user_lon is None:
-            return
-
-        start = snap_gps_to_node(user_lat, user_lon)
+        nonlocal user_lat, user_lon, use_gps
+        
+        # Xác định điểm đi
+        if use_gps:
+            if user_lat is None or user_lon is None:
+                return
+            start = snap_gps_to_node(user_lat, user_lon)
+        else:
+            start = start_sel.value
+        
         end = end_sel.value
 
         if not start:
@@ -403,6 +425,20 @@ def create_page():
         path, dist = find_shortest_path(start, end)
         image_view.source = draw_path(path)
         distance_label.text = f"🚶‍♂️ {dist*2/10:.0f} bước"
+    
+    def on_start_sel_change():
+        """Khi chọn điểm đi thủ công, tắt GPS."""
+        nonlocal use_gps
+        if start_sel.value is not None:
+            use_gps = False
+        update_path()
+    
+    def enable_gps():
+        """Bật lại GPS và reset điểm đi."""
+        nonlocal use_gps
+        use_gps = True
+        start_sel.value = None
+        update_path()
         
     # ========== ZOOM HANDLER ==========
 
@@ -529,28 +565,50 @@ def create_page():
         with ui.card().classes('w-full glass-card p-3'):
             with ui.column().classes('w-full gap-2'):
                 # Destination selector
+                select_options = {
+                    k: DISPLAY_NAMES.get(k, k)
+                    for k in VISIBLE_LOCATIONS.keys()
+                }
+
+                # Điểm đi
+                start_sel = ui.select(
+                    options=select_options,
+                    value=None,
+                    label="🚀 Điểm đi"
+                )
+
+                start_sel.classes('w-full')
+                start_sel.props('outlined dense options-dense hide-dropdown-icon')
+                start_sel.style('font-size: 12px;')
+
                 end_sel = ui.select(
-                    options=list(VISIBLE_LOCATIONS.keys()),
+                    options=select_options,
                     value=None,
                     label="🏁 Điểm đến"
-                ).classes('w-full').props(
-                    'outlined dense options-dense hide-dropdown-icon'
-                ).style('font-size: 12px;')
+                )
+
+                end_sel.classes('w-full')
+                end_sel.props('outlined dense options-dense hide-dropdown-icon')
+                end_sel.style('font-size: 12px;')
                 
-                # Voice button
-                with ui.column().classes('w-full gap-2'):
-                    ui.button("🎤 Nói điểm đến", on_click=start_voice).classes(
-                        'flex-1 btn-voice text-xs py-2'
+                # Voice button và GPS button
+                with ui.row().classes('w-full gap-2'):
+                    ui.button("� GPS", on_click=enable_gps).classes(
+                        'btn-back text-xs py-2'
+                    ).style('flex: 1;')
+                    ui.button("�🎤 Nói điểm đến", on_click=start_voice).classes(
+                        'btn-voice text-xs py-2'
+                    ).style('flex: 2;')
+                
+                spoken_label = ui.label("🎙 ...").classes(
+                    'text-xs font-bold text-purple-700 text-center'
+                )
+                ui.label(
+                        '💡 Bạn có thể nói tiếng Việt hoặc tiếng Anh\n'
+                        'Ví dụ: "NHÀ ĂN" → CANTEEN'
+                    ).classes(
+                        'text-[12px] text-center text-red-500 italic'
                     )
-                    spoken_label = ui.label("🎙 ...").classes(
-                        'flex-1 text-xs font-bold text-purple-700 self-center text-center'
-                    )
-                    ui.label(
-                            '💡 Bạn có thể nói tiếng Việt hoặc tiếng Anh\n'
-                            'Ví dụ: "NHÀ ĂN" → CANTEEN'
-                        ).classes(
-                            'text-[12px] text-center text-red-500 italic'
-                        )
 
                 # Beta building button
                 ui.button(
@@ -621,6 +679,7 @@ def create_page():
             )
     
     # Bind events
+    start_sel.on_value_change(on_start_sel_change)
     end_sel.on_value_change(update_path)
     
     # Initialize
