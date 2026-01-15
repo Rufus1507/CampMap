@@ -205,10 +205,10 @@ VOICE_ALIAS = {
     "GAMMA BUILDING": ["GAMMA", "GAMMA BUILDING","TÒA GAMMA"],
     "BETA BUILDING": ["BETA", "BETA BUILDING","TÒA BETA","BETTA"],
     "GATE": ["GATE", "MAIN GATE", "ENTRANCE","CỔNG","CỔNG TRƯỜNG","CỔNG CHÍNH"],
-    "PARKING LOT A": ["PARKING LOT A", "PARKING A", "PARK A","NHÀ XE A","BÃI ĐẬU XE A","ĐẬU XE A","BÃI ĐỖ XE A","NHÀ XE","BÃI ĐỖ XE","BÃI ĐẬU XE"],
-    "PARKING LOT B": ["PARKING LOT B", "PARKING B", "PARK B","NHÀ XE B","BÃI ĐẬU XE B","ĐẬU XE B","BÃI ĐỖ XE B"],
+    "PARKING LOT A": ["PARKING LOT A", "PARKING A", "PARK A","NHÀ XE A","BÃI ĐẬU XE A","ĐẬU XE A","BÃI ĐỖ XE A","NHÀ XE","BÃI ĐỖ XE","BÃI ĐẬU XE","BÃI GỬI XE A","NHÀ GỬI XE A"],
+    "PARKING LOT B": ["PARKING LOT B", "PARKING B", "PARK B","NHÀ XE B","BÃI ĐẬU XE B","ĐẬU XE B","BÃI ĐỖ XE B","BÃI GỬI XE B","NHÀ GỬI XE B"],
     "THE THINKER": ["THE THINKER", "THINKER", "STATUE","TƯỢNG THINKER","TƯỢNG THIN CƠ","TƯỢNG THIÊN CƠ","TƯỢNG","TƯỢNG ĐỜI THIÊN CƠ","TƯỢNG ĐỜ THIÊN CƠ"],
-    "SOCCER": ["SOCCER FIELD", "SOCCER", "FOOTBALL FIELD", "FOOTBALL","SÂN BÓNG ĐÁ","BÓNG ĐÁ","SÂN BÓNG"],
+    "SOCCER": ["SOCCER FIELD", "SOCCER", "FOOTBALL FIELD", "FOOTBALL","SÂN BÓNG ĐÁ","BÓNG ĐÁ","SÂN BÓNG","SÂN BANH"],
     "BASKETBALL": ["BASKETBALL COURT", "BASKETBALL","SÂN BÓNG RỔ","BÓNG RỔ"],
     "VOLLEYBALL": ["VOLLEYBALL COURT", "VOLLEYBALL","SÂN BÓNG CHUYỀN","BÓNG CHUYỀN"],
     "DOM A":{"DOM A", "DORM A", "KÝ TÚC XÁ A","KÝ TÚC XÁ"},
@@ -482,7 +482,7 @@ def create_page():
     
     def on_voice_result(e):
         spoken_raw = e.args['text'].upper().strip()
-        spoken_label.text = f"🎙 {spoken_raw}"
+        spoken_label.text = f"{spoken_raw}"
         spoken_norm = normalize_text(spoken_raw)
 
         # 🔥 Gom alias + sắp xếp theo độ dài giảm dần
@@ -498,10 +498,10 @@ def create_page():
             if alias_norm in spoken_norm:
                 end_sel.value = canonical
                 update_path()
-                ui.notify(f"🎯 {canonical}", type='positive')
+                ui.notify(f"✅ {canonical}")
                 return
 
-        ui.notify(f"❌ Không nhận ra: {spoken_raw}", type='warning')
+        ui.notify(f"❌ Không nhận ra: {spoken_raw}")
     
     # Register events
     ui.on('gps-update', on_gps_update)
